@@ -11,6 +11,7 @@ Model : DAO(Data Access Object) DB접근 로직
 
 DTO(Data Transfer Object) : DB접근을 위한 생성자
 	
-	
+쿼리문 **
+
 
 
