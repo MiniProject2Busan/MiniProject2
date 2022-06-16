@@ -11,14 +11,14 @@ import utils.DBUtil;
 public class ManagerDAO {
 
 	// 담당자 정보 생성
-	public static boolean addManager(ManagerDTO manager)) throws SQLException {
+	public static boolean addManager(ManagerDTO manager) throws SQLException {
 		Connection conn = null;
 		PreparedStatement pstmt = null;
 
 		try {
 			conn = DBUtil.getConnection();
 			pstmt = conn.prepareStatement("insert into manager values(?, ?, ?)");
-			pstmt.setString(1, manager.getManagerId());
+			pstmt.setInt(1, manager.getManagerId());
 			pstmt.setString(2, manager.getManagerName());
 			pstmt.setString(3, manager.getManagerPhone());
 			
@@ -31,7 +31,7 @@ public class ManagerDAO {
 	}
 	
 	// 담당자 ID로 담당자 정보 수정
-		public static boolean updateManager(String managerId, String managerName, String managerPhone) throws SQLException {
+		public static boolean updateManager(int managerId, String managerName, String managerPhone) throws SQLException {
 			Connection con = null;
 			PreparedStatement pstmt = null;
 			try {
@@ -40,7 +40,7 @@ public class ManagerDAO {
 				pstmt = con.prepareStatement("update manager set manager_name=?, manager_phone=? where manager_id=?");
 				pstmt.setString(1, managerName);
 				pstmt.setString(2, managerPhone);
-				pstmt.setString(3, managerId);
+				pstmt.setInt(3, managerId);
 				
 				int result = pstmt.executeUpdate();
 				if (result == 1) {
@@ -53,14 +53,14 @@ public class ManagerDAO {
 		}
 
 
-		// 담당자 ID로 담당자 정보 삭제
-		public static boolean deleteManager(String managerId) throws SQLException {
+		// 담당자 이름으로 담당자 정보 삭제
+		public static boolean deleteManager(String managerName) throws SQLException {
 			Connection con = null;
 			PreparedStatement pstmt = null;
 			try {
 				con = DBUtil.getConnection();
-				pstmt = con.prepareStatement("delete from manager where manager_id=?");
-				pstmt.setString(1, managerId);
+				pstmt = con.prepareStatement("delete from manager where manager_name=?");
+				pstmt.setString(1, managerName);
 				int result = pstmt.executeUpdate();
 				if (result == 1) {
 					return true;
@@ -71,8 +71,8 @@ public class ManagerDAO {
 			return false;
 		}
 
-		// 담당자 ID로 담당자 정보 검색
-		public static ManagerDTO getManager(String managerId) throws SQLException {
+		// 담당자 이름으로 담당자 정보 검색
+		public static ManagerDTO getManager(String managerName) throws SQLException {
 			Connection con = null;
 			PreparedStatement pstmt = null;
 			ResultSet rset = null;
@@ -80,11 +80,11 @@ public class ManagerDAO {
 
 			try {
 				con = DBUtil.getConnection();
-				pstmt = con.prepareStatement("select * from manager where manager_id=?");
-				pstmt.setString(1, managerId);
+				pstmt = con.prepareStatement("select * from manager where manager_name=?");
+				pstmt.setString(1, managerName);
 				rset = pstmt.executeQuery();
 				if (rset.next()) {
-					managerInfo = new ManagerDTO(rset.getString(1), rset.getString(2), rset.getString(3));
+					managerInfo = new ManagerDTO(rset.getInt(1), rset.getString(2), rset.getString(3));
 				}
 			} finally {
 				DBUtil.close(con, pstmt, rset);
@@ -105,7 +105,7 @@ public class ManagerDAO {
 
 				list = new ArrayList<ManagerDTO>();
 				while (rset.next()) {
-					list.add(new ManagerDTO(rset.getString(1), rset.getString(2), rset.getString(3)));
+					list.add(new ManagerDTO(rset.getInt(1), rset.getString(2), rset.getString(3)));
 				}
 			} finally {
 				DBUtil.close(con, pstmt, rset);

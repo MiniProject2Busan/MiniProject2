@@ -11,22 +11,22 @@ import utils.DBUtil;
 public class StudentDAO {
 
 	// 학생 정보 생성
-	public static boolean addStudent(StudentDTO student, String managerId ) throws SQLException {
+	public static boolean addStudent(StudentDTO student, int managerId ) throws SQLException {
 		Connection conn = null;
 		PreparedStatement pstmt = null;
 
 		try {
 			conn = DBUtil.getConnection();
 			pstmt = conn.prepareStatement("insert into student values(?, ?, ?, ?, ?, ?, ?, ?, ?)");
-			pstmt.setString(1, student.getStudentId());
+			pstmt.setInt(1, student.getStudentId());
 			pstmt.setString(2, student.getStudentName());
-			pstmt.setString(3, student.getStudentAge());
+			pstmt.setInt(3, student.getStudentAge());
 			pstmt.setString(4, student.getStudentPhone());
 			pstmt.setString(5, student.getStudentaddr());
 			pstmt.setString(6, student.getStudentSeatId());
 			pstmt.setString(7, student.getStudentAttendance());
 			pstmt.setString(8, student.getStudentAbsent());
-			pstmt.setString(9, managerId);
+			pstmt.setInt(9, managerId);
 			
 			int result = pstmt.executeUpdate();
 		} finally {
@@ -36,15 +36,17 @@ public class StudentDAO {
 		return false;
 	}
 	
-	// 학생 ID로 담당자 정보 수정 - 보류
-		public static boolean updateStudent() throws SQLException {
+	// 학생 ID로 학생 정보(번호, 주소) 수정
+		public static boolean updateStudent(int studentId, String studentName, String studentPhone) throws SQLException {
 			Connection con = null;
 			PreparedStatement pstmt = null;
 			try {
 				con = DBUtil.getConnection();
 
-				pstmt = con.prepareStatement("query");
-				pstmt.setString(1, x);
+				pstmt = con.prepareStatement("updete student set student_name=?, student_phone=? where student_id=?");
+				pstmt.setString(1, studentName);
+				pstmt.setString(2, studentPhone);
+				pstmt.setInt(3, studentId);
 				
 				int result = pstmt.executeUpdate();
 				if (result == 1) {
@@ -57,14 +59,14 @@ public class StudentDAO {
 		}
 
 
-		// 학생 ID로 학생 정보 삭제
-		public static boolean deleteStudent(String managerId) throws SQLException {
+		// 학생 이름으로 학생 정보 삭제
+		public static boolean deleteStudent(String managerName) throws SQLException {
 			Connection con = null;
 			PreparedStatement pstmt = null;
 			try {
 				con = DBUtil.getConnection();
-				pstmt = con.prepareStatement("delete from student where student_id=?");
-				pstmt.setString(1, managerId);
+				pstmt = con.prepareStatement("delete from student where student_name=?");
+				pstmt.setString(1, managerName);
 				int result = pstmt.executeUpdate();
 				if (result == 1) {
 					return true;
@@ -75,8 +77,8 @@ public class StudentDAO {
 			return false;
 		}
 
-		// 학생 ID로 학생 정보 검색
-		public static StudentDTO getStudent(String studentId) throws SQLException {
+		// 학생 이름으로 학생 정보 검색
+		public static StudentDTO getStudent(String studentName) throws SQLException {
 			Connection con = null;
 			PreparedStatement pstmt = null;
 			ResultSet rset = null;
@@ -84,8 +86,8 @@ public class StudentDAO {
 
 			try {
 				con = DBUtil.getConnection();
-				pstmt = con.prepareStatement("select * from student where student_id=?");
-				pstmt.setString(1, studentId);
+				pstmt = con.prepareStatement("select * from student where student_name=?");
+				pstmt.setString(1, studentName);
 				rset = pstmt.executeQuery();
 				if (rset.next()) {
 					studentInfo = new StudnetDTO(rset.getString(1), rset.getString(2), rset.getString(3),rset.getString(4), rset.getString(5), rset.getString(6),rset.getString(7), rset.getString(8), rset.getString(9));

@@ -18,7 +18,7 @@ public class InstructorDAO {
 		try {
 			conn = DBUtil.getConnection();
 			pstmt = conn.prepareStatement("insert into instructor values(?, ?, ?)");
-			pstmt.setString(1, instructor.getInstructorId());
+			pstmt.setInt(1, instructor.getInstructorId());
 			pstmt.setString(2, instructor.getInstructorName());
 			pstmt.setString(3, instructor.getInstructorPhone());
 			
@@ -31,7 +31,7 @@ public class InstructorDAO {
 	}
 	
 	// 강사 ID로 강사 정보 수정
-		public static boolean updateInstructor(String instructorId, String instructorName, String instructorPhone) throws SQLException {
+		public static boolean updateInstructor(int instructorId, String instructorName, String instructorPhone) throws SQLException {
 			Connection con = null;
 			PreparedStatement pstmt = null;
 			try {
@@ -40,7 +40,7 @@ public class InstructorDAO {
 				pstmt = con.prepareStatement("update instructor set instructor_name=?, instructor_phone=? where instructor_id=?");
 				pstmt.setString(1, instructorName);
 				pstmt.setString(2, instructorPhone);
-				pstmt.setString(3, instructorId);
+				pstmt.setInt(3, instructorId);
 				
 				int result = pstmt.executeUpdate();
 				if (result == 1) {
@@ -53,14 +53,14 @@ public class InstructorDAO {
 		}
 
 
-		// 강사 ID로 강사 정보 삭제
-		public static boolean deleteInstructor(String instructorId) throws SQLException {
+		// 강사 이름으로 강사 정보 삭제
+		public static boolean deleteInstructor(String instructorName) throws SQLException {
 			Connection con = null;
 			PreparedStatement pstmt = null;
 			try {
 				con = DBUtil.getConnection();
-				pstmt = con.prepareStatement("delete from instructor where instructor_id=?");
-				pstmt.setString(1, instructorId);
+				pstmt = con.prepareStatement("delete from instructor where instructor_name=?");
+				pstmt.setString(1, instructorName);
 				int result = pstmt.executeUpdate();
 				if (result == 1) {
 					return true;
@@ -71,8 +71,8 @@ public class InstructorDAO {
 			return false;
 		}
 
-		// 강사 ID로 강사 정보 검색
-		public static InstructorDTO getInstructor(String instructorId) throws SQLException {
+		// 강사 이름으로 강사 정보 검색
+		public static InstructorDTO getInstructor(String instructorName) throws SQLException {
 			Connection con = null;
 			PreparedStatement pstmt = null;
 			ResultSet rset = null;
@@ -80,11 +80,11 @@ public class InstructorDAO {
 
 			try {
 				con = DBUtil.getConnection();
-				pstmt = con.prepareStatement("select * from instructor where instructor_id=?");
-				pstmt.setString(1, instructorId);
+				pstmt = con.prepareStatement("select * from instructor where instructor_name=?");
+				pstmt.setString(1, instructorName);
 				rset = pstmt.executeQuery();
 				if (rset.next()) {
-					instructorInfo = new InstructorDTO(rset.getString(1), rset.getString(2), rset.getString(3));
+					instructorInfo = new InstructorDTO(rset.getInt(1), rset.getString(2), rset.getString(3));
 				}
 			} finally {
 				DBUtil.close(con, pstmt, rset);
@@ -105,7 +105,7 @@ public class InstructorDAO {
 
 				list = new ArrayList<ManagerDTO>();
 				while (rset.next()) {
-					list.add(new InstructorDTO(rset.getString(1), rset.getString(2), rset.getString(3)));
+					list.add(new InstructorDTO(rset.getInt(1), rset.getString(2), rset.getString(3)));
 				}
 			} finally {
 				DBUtil.close(con, pstmt, rset);
