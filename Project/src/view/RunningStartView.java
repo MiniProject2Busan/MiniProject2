@@ -8,8 +8,8 @@ public class RunningStartView {
 		Scanner sc = new Scanner(System.in);
 		while (true) {
 			System.out.println("First.메인 시스템");
-			System.out.println("1.정보 출력");
-			System.out.println("2.특정 정보 출력");
+			System.out.println("1.정보 출력"); // 클리어
+			System.out.println("2.특정 정보 출력"); // 클리어
 			System.out.println("3.정보 수정 ");
 			System.out.println("4.출결 사항 및 교육비 출력");
 			System.out.println("-1. 종료");
