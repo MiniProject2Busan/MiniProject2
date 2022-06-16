@@ -6,6 +6,7 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
 
+import dto.ManagerDTO;
 import utils.DBUtil;
 
 public class ManagerDAO {
