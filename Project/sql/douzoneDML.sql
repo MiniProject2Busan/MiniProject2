@@ -1,15 +1,15 @@
 USE douzone;
 
 -- manager -> instructor -> course -> student
-
+sdfzsdfz
 -- manager table insert
-INSERT INTO manager(manager_name, manager_phone) VALUES("¾çÀºÁ¤","010-0000-0000");
-INSERT INTO manager(manager_name, manager_phone) VALUES("À±´Ù°æ","010-1111-1111");
+INSERT INTO manager(manager_name, manager_phone) VALUES("ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½","010-0000-0000");
+INSERT INTO manager(manager_name, manager_phone) VALUES("ï¿½ï¿½ï¿½Ù°ï¿½","010-1111-1111");
 SELECT * FROM manager;
 
 -- instructor table insert
-INSERT INTO instructor(instructor_name, instructor_phone) VALUES("ÀÓ¼Ò¿µ", "010-0000-0000");
-INSERT INTO instructor(instructor_name, instructor_phone) VALUES("½Å¿ë±â", "010-1111-1111");
+INSERT INTO instructor(instructor_name, instructor_phone) VALUES("ï¿½Ó¼Ò¿ï¿½", "010-0000-0000");
+INSERT INTO instructor(instructor_name, instructor_phone) VALUES("ï¿½Å¿ï¿½ï¿½", "010-1111-1111");
 SELECT * FROM instructor;
 
 -- course table insert
@@ -22,21 +22,21 @@ INSERT INTO course(course_name, start_date, end_date) VALUES("Java", "2022-06-07
 SELECT * FROM course;
 
 -- student table insert
-INSERT INTO student(student_name, student_age, student_phone, student_addr, student_seatId) VALUES("±è¿ëÁÖ", 30, "010-0000-0000", "ºÎ»êÁø±¸", "JKYD01");
-INSERT INTO student(student_name, student_age, student_phone, student_addr, student_seatId) VALUES("±è¹Î±Ô", 28, "010-0000-0000", "¼­±¸", "JKYD02");
-INSERT INTO student(student_name, student_age, student_phone, student_addr, student_seatId) VALUES("°û¿¹¿µ", 26, "010-0000-0000", "µ¿·¡±¸", "JKYD03");
-INSERT INTO student(student_name, student_age, student_phone, student_addr, student_seatId) VALUES("¹ÚÇÑÁÖ", 28, "010-0000-0000", "»çÇÏ±¸", "JKYD04");
-INSERT INTO student(student_name, student_age, student_phone, student_addr, student_seatId) VALUES("½ÅÇöÃ¤", 28, "010-0000-0000", "³²±¸", "JKYD05");
-INSERT INTO student(student_name, student_age, student_phone, student_addr, student_seatId) VALUES("¹é¼ºÁØ", 26, "010-0000-0000", "ºÎ»ç", "JKYD06");
-INSERT INTO student(student_name, student_age, student_phone, student_addr, student_seatId) VALUES("¹ÚÁ¤ÀÎ", 27, "010-0000-0000", "¿¬Á¦±¸", "JKYD07");
-INSERT INTO student(student_name, student_age, student_phone, student_addr, student_seatId) VALUES("¼­ÀÇÁø", 25, "010-0000-0000", "ÇØ¿î´ë±¸", "JKYD08");
-INSERT INTO student(student_name, student_age, student_phone, student_addr, student_seatId) VALUES("Á¤¿µ±¤", 26, "010-0000-0000", "ºÏ±¸", "JKYD09");
-INSERT INTO student(student_name, student_age, student_phone, student_addr, student_seatId) VALUES("Á¤¿µÈÆ", 26, "010-0000-0000", "¿µµµ±¸", "JKYD10");
-INSERT INTO student(student_name, student_age, student_phone, student_addr, student_seatId) VALUES("¼ºÁ¾Çå", 26, "010-0000-0000", "°­¼­±¸", "JKYD11");
-INSERT INTO student(student_name, student_age, student_phone, student_addr, student_seatId) VALUES("±èÀ±È£", 26, "010-0000-0000", "ÇØ¿î´ë±¸", "JKYD12");
-INSERT INTO student(student_name, student_age, student_phone, student_addr, student_seatId) VALUES("±èµµÇå", 25, "010-0000-0000", "¼ö¿µ±¸", "JKYD13");
-INSERT INTO student(student_name, student_age, student_phone, student_addr, student_seatId) VALUES("Á¶¸íÀ±", 30, "010-0000-0000", "Áß±¸", "JKYD14");
-INSERT INTO student(student_name, student_age, student_phone, student_addr, student_seatId) VALUES("°­µ¿Çö", 28, "010-0000-0000", "µ¿±¸", "JKYD15");
+INSERT INTO student(student_name, student_age, student_phone, student_addr, student_seatId) VALUES("ï¿½ï¿½ï¿½ï¿½ï¿½", 30, "010-0000-0000", "ï¿½Î»ï¿½ï¿½ï¿½ï¿½ï¿½", "JKYD01");
+INSERT INTO student(student_name, student_age, student_phone, student_addr, student_seatId) VALUES("ï¿½ï¿½Î±ï¿½", 28, "010-0000-0000", "ï¿½ï¿½ï¿½ï¿½", "JKYD02");
+INSERT INTO student(student_name, student_age, student_phone, student_addr, student_seatId) VALUES("ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½", 26, "010-0000-0000", "ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½", "JKYD03");
+INSERT INTO student(student_name, student_age, student_phone, student_addr, student_seatId) VALUES("ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½", 28, "010-0000-0000", "ï¿½ï¿½ï¿½Ï±ï¿½", "JKYD04");
+INSERT INTO student(student_name, student_age, student_phone, student_addr, student_seatId) VALUES("ï¿½ï¿½ï¿½ï¿½Ã¤", 28, "010-0000-0000", "ï¿½ï¿½ï¿½ï¿½", "JKYD05");
+INSERT INTO student(student_name, student_age, student_phone, student_addr, student_seatId) VALUES("ï¿½é¼ºï¿½ï¿½", 26, "010-0000-0000", "ï¿½Î»ï¿½", "JKYD06");
+INSERT INTO student(student_name, student_age, student_phone, student_addr, student_seatId) VALUES("ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½", 27, "010-0000-0000", "ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½", "JKYD07");
+INSERT INTO student(student_name, student_age, student_phone, student_addr, student_seatId) VALUES("ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½", 25, "010-0000-0000", "ï¿½Ø¿ï¿½ë±¸", "JKYD08");
+INSERT INTO student(student_name, student_age, student_phone, student_addr, student_seatId) VALUES("ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½", 26, "010-0000-0000", "ï¿½Ï±ï¿½", "JKYD09");
+INSERT INTO student(student_name, student_age, student_phone, student_addr, student_seatId) VALUES("ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½", 26, "010-0000-0000", "ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½", "JKYD10");
+INSERT INTO student(student_name, student_age, student_phone, student_addr, student_seatId) VALUES("ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½", 26, "010-0000-0000", "ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½", "JKYD11");
+INSERT INTO student(student_name, student_age, student_phone, student_addr, student_seatId) VALUES("ï¿½ï¿½ï¿½ï¿½È£", 26, "010-0000-0000", "ï¿½Ø¿ï¿½ë±¸", "JKYD12");
+INSERT INTO student(student_name, student_age, student_phone, student_addr, student_seatId) VALUES("ï¿½èµµï¿½ï¿½", 25, "010-0000-0000", "ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½", "JKYD13");
+INSERT INTO student(student_name, student_age, student_phone, student_addr, student_seatId) VALUES("ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½", 30, "010-0000-0000", "ï¿½ß±ï¿½", "JKYD14");
+INSERT INTO student(student_name, student_age, student_phone, student_addr, student_seatId) VALUES("ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½", 28, "010-0000-0000", "ï¿½ï¿½ï¿½ï¿½", "JKYD15");
 
 COMMIT;
 
