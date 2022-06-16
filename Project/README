@@ -1,0 +1,16 @@
+Package 분류
+
+View : 콘솔창 결과 출력
+	- StartView : 첫 화면 
+	- EndView : 특정 결과 출력
+	- SuccessView : 동작성공여부 결과출력
+
+Controller : 에러처리 및 사용자 입력에 대한 로직 동작
+
+Model : DAO(Data Access Object) DB접근 로직 
+
+DTO(Data Transfer Object) : DB접근을 위한 생성자
+	
+	
+
+
