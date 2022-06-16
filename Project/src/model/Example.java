@@ -1,5 +1,5 @@
 //package blood.transfusion.model;
-//
+//sada
 //import java.sql.Connection;
 //import java.sql.PreparedStatement;
 //import java.sql.ResultSet;
@@ -10,7 +10,7 @@
 //import blood.transfusion.util.DBUtil;
 //
 //public class BTProjectDAO {
-//	// 프로젝트 저장
+//	// �봽濡쒖젥�듃 ���옣
 //	public static boolean addBTProject(BTProjectDTO btProject) throws SQLException {
 //		Connection con = null;
 //		PreparedStatement pstmt = null;
@@ -22,8 +22,8 @@
 //			pstmt.setString(3, btProject.getDonorId());
 //			pstmt.setString(4, btProject.getRecipientId());
 //			pstmt.setString(5, btProject.getbtContent());
-//			// 입력값 받을 수 있음
-//			int result = pstmt.executeUpdate(); // 에러문장
+//			// �엯�젰媛� 諛쏆쓣 �닔 �엳�쓬
+//			int result = pstmt.executeUpdate(); // �뿉�윭臾몄옣
 //
 //			if (result == 1) {
 //				return true;
@@ -34,7 +34,7 @@
 //		return false;
 //	}
 //
-//	// 프로젝트 아이디로 헌혈자 정보 수정
+//	// �봽濡쒖젥�듃 �븘�씠�뵒濡� �뿄�삁�옄 �젙蹂� �닔�젙
 //	public static boolean updateBTProjectdonor(String btProjectId, String donorId) throws SQLException {
 //		Connection con = null;
 //		PreparedStatement pstmt = null;
@@ -54,7 +54,7 @@
 //		return false;
 //	}
 //
-//	// 프로젝트 아이디로 수혈자 정보 수정
+//	// �봽濡쒖젥�듃 �븘�씠�뵒濡� �닔�삁�옄 �젙蹂� �닔�젙
 //	public static boolean updateBTProjectReceive(String btProjectId, String recipientId) throws SQLException {
 //		Connection con = null;
 //		PreparedStatement pstmt = null;
@@ -75,7 +75,7 @@
 //		return false;
 //	}
 //
-//	// 프로젝트 이름으로 프로젝트 삭제
+//	// �봽濡쒖젥�듃 �씠由꾩쑝濡� �봽濡쒖젥�듃 �궘�젣
 //	public static boolean deleteBTProject(String btProjectid) throws SQLException {
 //		Connection con = null;
 //		PreparedStatement pstmt = null;
@@ -93,7 +93,7 @@
 //		return false;
 //	}
 //
-//	// 프로젝트 이름으로 프로젝트 검색
+//	// �봽濡쒖젥�듃 �씠由꾩쑝濡� �봽濡쒖젥�듃 寃��깋
 //	public static BTProjectDTO getBTProject(String btProjectid) throws SQLException {
 //		Connection con = null;
 //		PreparedStatement pstmt = null;
@@ -115,7 +115,7 @@
 //		return blood_transfusionUser;
 //	}
 //
-//	// 모든 수혈 프로젝트 검색
+//	// 紐⑤뱺 �닔�삁 �봽濡쒖젥�듃 寃��깋
 //	public static ArrayList<BTProjectDTO> getAllBTProjects() throws SQLException {
 //		Connection con = null;
 //		PreparedStatement pstmt = null;
@@ -137,7 +137,7 @@
 //		return list;
 //	}
 //
-//	// Donor 이름으로 프로젝트 이름 추출
+//	// Donor �씠由꾩쑝濡� �봽濡쒖젥�듃 �씠由� 異붿텧
 //	public static String getBtID(String donor_id) throws SQLException {
 //		Connection con = null;
 //		PreparedStatement pstmt = null;
@@ -186,34 +186,34 @@
 //	public void notExistBTProject(String btProjectId) throws NotExistException, SQLException {
 //		BTProjectDTO btProject = BTProjectDAO.getBTProject(btProjectId);
 //		if (btProject == null) {
-//			throw new NotExistException("검색하진 수혈 정보가 없습니다.");
+//			throw new NotExistException("寃��깋�븯吏� �닔�삁 �젙蹂닿� �뾾�뒿�땲�떎.");
 //		}
 //	}
 //
-//	// 모든 BTProject 정보 반환
+//	// 紐⑤뱺 BTProject �젙蹂� 諛섑솚
 //	public ArrayList<BTProjectDTO> getAllBTProjects() throws SQLException {
 //		return BTProjectDAO.getAllBTProjects();
 //	}
 //
-//	// Donor ID로 BTProject 값 검색
+//	// Donor ID濡� BTProject 媛� 寃��깋
 //	public String getBTPid(String donor_id) throws SQLException, NotExistException {
 //
 //		return BTProjectDAO.getBtID(donor_id);
 //	}
 //
-//	// BTProject id로 검색
+//	// BTProject id濡� 寃��깋
 //	public BTProjectDTO getBTProject(String btProjectid) throws SQLException, NotExistException {
 //		BTProjectDTO getBTO = BTProjectDAO.getBTProject(btProjectid);
 //		return getBTO;
 //	}
 //
-//	// 새로운 BTProject 저장
+//	// �깉濡쒖슫 BTProject ���옣
 //	public boolean addBTProject(BTProjectDTO btProject) throws SQLException {
 //		BTProjectDAO.addBTProject(btProject);
 //		return false;
 //	}
 //
-//	// 기존 BTProject 수정
+//	// 湲곗〈 BTProject �닔�젙
 //	public boolean updateBTProject(String btProjectId, String btProjectContent) throws SQLException, NotExistException {
 //		if (BTProjectDAO.updateBTProjectdonor(btProjectId, btProjectContent)) {
 //			return true;
@@ -221,7 +221,7 @@
 //		return false;
 //	}
 //
-//	// BTProject 삭제
+//	// BTProject �궘�젣
 //	public boolean deleteBTProject(String btProjectId) throws SQLException, NotExistException {
 //		if (BTProjectDAO.deleteBTProject(btProjectId)) {
 //
@@ -237,7 +237,7 @@
 //		System.out.println(donorId);
 //		DonorDTO Donor = DonorDAO.getDonor(donorId);
 //		if (Donor == null) {
-//			throw new NotExistException("검색한  헌혈자가 미 존재합니다.");
+//			throw new NotExistException("寃��깋�븳  �뿄�삁�옄媛� 誘� 議댁옱�빀�땲�떎.");
 //		}
 //	}
 //
@@ -258,7 +258,7 @@
 //	public DonorDTO getDonor(String donorId) throws SQLException, NotExistException {
 //		DonorDTO donor = DonorDAO.getDonor(donorId);
 //		if (donor == null) {
-//			throw new NotExistException("검색한 헌혈자가 미 존재합니다.");
+//			throw new NotExistException("寃��깋�븳 �뿄�삁�옄媛� 誘� 議댁옱�빀�땲�떎.");
 //		}
 //		return donor;
 //	}
@@ -271,7 +271,7 @@
 //	public static void notExistRecipient(String recipientId) throws NotExistException, SQLException {
 //		RecipientDTO recipient = RecipientDAO.getRecipient(recipientId);
 //		if (recipient == null) {
-//			throw new NotExistException("검색한  수혈자가 미 존재합니다.");
+//			throw new NotExistException("寃��깋�븳  �닔�삁�옄媛� 誘� 議댁옱�빀�땲�떎.");
 //		}
 //	}
 //
