@@ -1,11 +1,14 @@
 package service;
 
 import java.sql.SQLException;
+import java.util.ArrayList;
 
 import dto.InstructorDTO;
 import dto.ManagerDTO;
+import dto.StudentDTO;
 import model.InstructorDAO;
 import model.ManagerDAO;
+import model.StudentDAO;
 
 public class ManagerService {
 	private static ManagerService instance = new ManagerService();
@@ -14,6 +17,11 @@ public class ManagerService {
 	
 	public static ManagerService getInstance() {
 		return instance;
+	}
+	
+	// manager 모든 정보 출력
+	public ArrayList<ManagerDTO> getAllmanager() throws SQLException {
+		return ManagerDAO.getAllManager(); // Arraylist
 	}
 	
 	// manager 이름으로 검색

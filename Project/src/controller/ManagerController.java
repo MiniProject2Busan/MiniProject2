@@ -5,6 +5,7 @@ import java.sql.SQLException;
 import dto.InstructorDTO;
 import dto.ManagerDTO;
 import service.ManagerService;
+import view.RunningEndView;
 import view.TestEndView;
 
 public class ManagerController {
@@ -17,10 +18,19 @@ public class ManagerController {
 		return instance;
 	}
 	
+	// 모든 담당자 검색
+	public void allManager() {
+		try {
+			RunningEndView.managerView(service.getAllmanager());
+		} catch (SQLException s) {
+			System.out.println(s);
+		}
+	}
+	
 	// 이름으로 특정 담당자 검색
 	public void managerView(String managerName) {
 		try {
-			TestEndView.managerView(service.getManager(managerName));
+			RunningEndView.managerView(service.getManager(managerName));
 		} catch (SQLException e) {
 			e.printStackTrace();
 		}
@@ -37,9 +47,10 @@ public class ManagerController {
 		return null;
 	}
 	
+	// 담당자 정보 수정
 	public void updateManager(ManagerDTO manager, int num, String inputValue) {
 		try {
-			service.managerUpdate(manager, num, inputValue);
+			RunningEndView.updateView(service.managerUpdate(manager, num, inputValue));
 		} catch (SQLException e) {
 			e.printStackTrace();
 		}

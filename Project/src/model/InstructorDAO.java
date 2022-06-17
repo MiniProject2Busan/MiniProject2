@@ -12,6 +12,28 @@ import dto.InstructorDTO;
 import utils.DBUtil;
 
 public class InstructorDAO {
+	// 모든 강사 검색
+	public static ArrayList<InstructorDTO> getAllInstructor() throws SQLException {
+		Connection con = null;
+		PreparedStatement pstmt = null;
+		ResultSet rset = null;
+		ArrayList<InstructorDTO> list = null;
+		try {
+			con = DBUtil.getConnection();
+			pstmt = con.prepareStatement("select * from instructor");
+			rset = pstmt.executeQuery();
+
+			list = new ArrayList<InstructorDTO>();
+        while (rset.next()) {
+        	list.add(new InstructorDTO(rset.getInt(1), rset.getString(2), rset.getString(3)));
+        }
+		} finally {
+			DBUtil.close(con, pstmt, rset);
+		}
+		
+		return list;
+	} 
+	
 	// 강사 정보 생성
 	public static boolean addInstructor(InstructorDTO instructor) throws SQLException {
 		Connection conn = null;
@@ -80,7 +102,8 @@ public class InstructorDAO {
 	      PreparedStatement pstmt = null;
 	      try {
 	         conn = DBUtil.getConnection();
-	         pstmt = conn.prepareStatement("delete from instructor where instructor_id=?");
+	         pstmt = conn.prepareStatement("delete from instructor, course where instructor_id=? OR instructor_instructor_id=?");
+	         pstmt = conn.prepareStatement("delete from instructor");
 	
 	         int result = pstmt.executeUpdate();
 	         if (result == 1) {
@@ -135,27 +158,5 @@ public class InstructorDAO {
 	
 	      return instructorInfo;
 	   }
-	
-	      // 모든 강사 검색
-	//      public static ArrayList<InstructorDTO> getAllInstructor() throws SQLException {
-	//         Connection con = null;
-	//         PreparedStatement pstmt = null;
-	//         ResultSet rset = null;
-	//         ArrayList<InstructorDTO> list = null;
-	//         try {
-	//            con = DBUtil.getConnection();
-	//            pstmt = con.prepareStatement("select * from instructor");
-	//            rset = pstmt.executeQuery();
-	//
-	//            list = new ArrayList<ManagerDTO>();
-	//            while (rset.next()) {
-	//               list.add(new InstructorDTO(rset.getString(1), rset.getString(2), rset.getString(3)));
-	//            }
-	//         } finally {
-	//            DBUtil.close(con, pstmt, rset);
-	//         }
-	//         return list;
-	//      } 
-   
-   
+
 }

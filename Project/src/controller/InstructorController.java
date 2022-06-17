@@ -5,7 +5,9 @@ import java.util.Scanner;
 
 import dto.InstructorDTO;
 import model.InstructorDAO;
+import service.CourseService;
 import service.InstructorService;
+import view.RunningEndView;
 import view.TestEndView;
 
 public class InstructorController {
@@ -18,10 +20,19 @@ public class InstructorController {
 		return instance;
 	}
 	
+	// 모든 강사 검색
+	public void allInstructor() {
+		try {
+			RunningEndView.instructorView(service.getAllInstructor());
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+	}
+	
 	// 이름으로 특정 강사 검색
 	public void instructorView(String instructorName) {
 		try {
-			TestEndView.instructorVeiw(service.getInstructor(instructorName));
+			RunningEndView.instructorVeiw(service.getInstructor(instructorName));
 		} catch (SQLException e) {
 			e.printStackTrace();
 		}
@@ -41,7 +52,7 @@ public class InstructorController {
 	// 강사 정보 수정
 	public void updateInstructor(InstructorDTO instructor, int num, String inputValue) {
 		try {
-			service.instructorUpdate(instructor, num, inputValue);
+			RunningEndView.updateView(service.instructorUpdate(instructor, num, inputValue));
 		} catch (SQLException e) {
 			e.printStackTrace();
 		}
@@ -50,6 +61,7 @@ public class InstructorController {
 	// 강사 정보 추가
 	public void insertInstructor(InstructorDTO instructor) {
 		try {
+//			System.out.println("instructor : " + instructor);
 			service.instructorInsert(instructor);
 		} catch (SQLException e) {
 			e.printStackTrace();

@@ -10,6 +10,27 @@ import dto.ManagerDTO;
 import utils.DBUtil;
 
 public class ManagerDAO {
+	// 모든 담당자 검색
+	public static ArrayList<ManagerDTO> getAllManager() throws SQLException {
+		Connection conn = null;
+		PreparedStatement pstmt = null;
+		ResultSet rset = null;
+		ArrayList<ManagerDTO> list = null;
+		try {
+			conn = DBUtil.getConnection();
+			pstmt = conn.prepareStatement("select * from manager");
+			rset = pstmt.executeQuery();
+
+			list = new ArrayList<ManagerDTO>();
+			while (rset.next()) {
+				list.add(new ManagerDTO(rset.getInt(1), rset.getString(2), rset.getString(3)));
+			}
+		} finally {
+			DBUtil.close(conn, pstmt, rset);
+		}
+		return list;
+	} 
+	
 	// 담당자 정보 생성
 	public static boolean addManager(ManagerDTO manager) throws SQLException {
 		Connection conn = null;
@@ -126,27 +147,6 @@ public class ManagerDAO {
 		}
 		return managerInfo;
 	}
-
-	// 모든 담당자 검색
-//	public static ArrayList<ManagerDTO> getAllManager() throws SQLException {
-//		Connection con = null;
-//		PreparedStatement pstmt = null;
-//		ResultSet rset = null;
-//		ArrayList<ManagerDTO> list = null;
-//		try {
-//			con = DBUtil.getConnection();
-//			pstmt = con.prepareStatement("select * from manager");
-//			rset = pstmt.executeQuery();
-//
-//			list = new ArrayList<ManagerDTO>();
-//			while (rset.next()) {
-//				list.add(new ManagerDTO(rset.getString(1), rset.getString(2), rset.getString(3)));
-//			}
-//		} finally {
-//			DBUtil.close(con, pstmt, rset);
-//		}
-//		return list;
-//	} 
 	
 	
 }

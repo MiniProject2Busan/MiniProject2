@@ -65,8 +65,8 @@ public class TestStartView {
 //		}
 //		
 		// 강사 추가
-//		System.out.println("===특정 강사 정보 추가====");
-//		controller.insertInstructor(new InstructorDTO(0, "백문기", "010-1111-1111"));
+		System.out.println("===특정 강사 정보 추가====");
+		controller.insertInstructor(new InstructorDTO(0, "정영광", "010-1111-1111"));
 		
 		// 강사 삭제 (추후 고민)
 		// 해당 교육이 진행중인지? ---> course의 instructor_id 값 update 
@@ -124,16 +124,16 @@ public class TestStartView {
 //		mController.insertManager(new ManagerDTO(0, "백성준", "010-1111-1111"));
 		
 		// 담당자 삭제
-		System.out.println("===특정 담당자 정보 삭제====");
-		ManagerDTO managerD = mController.checkManagerId(1);
-		if(managerD != null) {
-			System.out.println(managerD);
-			System.out.println("정말 삭제하시겠습니까?");
-		
-			mController.deleteManager(1);
-		} else {
-			System.out.println("일치하는 데이터가 존재하지 않습니다.");
-		}
+//		System.out.println("===특정 담당자 정보 삭제====");
+//		ManagerDTO managerD = mController.checkManagerId(1);
+//		if(managerD != null) {
+//			System.out.println(managerD);
+//			System.out.println("정말 삭제하시겠습니까?");
+//		
+//			mController.deleteManager(1);
+//		} else {
+//			System.out.println("일치하는 데이터가 존재하지 않습니다.");
+//		}
 	}
 
 }
