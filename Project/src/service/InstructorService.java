@@ -31,7 +31,17 @@ public class InstructorService {
 	}
 	
 	// 이름 수정
-	public boolean instructorUpdate(InstructorDTO instructor, int num,String name) throws SQLException {
-		return InstructorDAO.updateInstructor(instructor, num, name);
+	public boolean instructorUpdate(InstructorDTO instructor, int num, String inputValue) throws SQLException {
+		return InstructorDAO.updateInstructor(instructor, num, inputValue);
+	}
+	
+	// 새로운 강사 저장
+	public boolean instructorInsert(InstructorDTO instructor) throws SQLException {
+		return InstructorDAO.addInstructor(instructor);
+	}
+	
+	// 강사 삭제
+	public boolean instructorDelete(int instuctorId) throws SQLException {
+		return InstructorDAO.deleteInstructor(instuctorId);
 	}
 }

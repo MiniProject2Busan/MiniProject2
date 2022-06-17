@@ -27,7 +27,7 @@ public class InstructorController {
 		}
 	}
 	
-	// update를 위한 checkid
+	// update/delete를 위한 id값 체크
 	public InstructorDTO checkInstructorId(int instructorId) {
 		try {
 			return service.instructorIdCheck(instructorId);
@@ -39,16 +39,29 @@ public class InstructorController {
 	}
 	
 	// 강사 정보 수정
-	public void updateInstructor(InstructorDTO instructor, int num,String name) {
+	public void updateInstructor(InstructorDTO instructor, int num, String inputValue) {
 		try {
-			service.instructorUpdate(instructor, num, name);
+			service.instructorUpdate(instructor, num, inputValue);
 		} catch (SQLException e) {
 			e.printStackTrace();
 		}
 	}
 	
-//	// 연락처 수정
-//	public void updateInstructorPhone() {
-//		
-//	}
+	// 강사 정보 추가
+	public void insertInstructor(InstructorDTO instructor) {
+		try {
+			service.instructorInsert(instructor);
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+	}
+	
+	// 강사 정보 삭제
+	public void deleteInstructor(int instuctorId) {
+		try {
+			service.instructorDelete(instuctorId);
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+	}
 }
