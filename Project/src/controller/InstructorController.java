@@ -6,7 +6,7 @@ import java.util.Scanner;
 import dto.InstructorDTO;
 import model.InstructorDAO;
 import service.InstructorService;
-import view.TestInstructorEndView;
+import view.TestEndView;
 
 public class InstructorController {
 	private static InstructorController instance = new InstructorController();
@@ -21,7 +21,7 @@ public class InstructorController {
 	// 이름으로 특정 강사 검색
 	public void instructorView(String instructorName) {
 		try {
-			TestInstructorEndView.instructorVeiw(service.getInstructor(instructorName));
+			TestEndView.instructorVeiw(service.getInstructor(instructorName));
 		} catch (SQLException e) {
 			e.printStackTrace();
 		}
