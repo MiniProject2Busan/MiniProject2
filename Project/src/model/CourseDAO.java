@@ -67,7 +67,7 @@ public class CourseDAO {
 			try {
 				con = DBUtil.getConnection();
 				
-				pstmt = con.prepareStatement("updete course set course_name=? where course_id=?");
+				pstmt = con.prepareStatement("update course set course_name=? where course_id=?");
 				pstmt.setString(1, courseName);
 				pstmt.setInt(2, courseId);
 				
@@ -88,7 +88,7 @@ public class CourseDAO {
 			try {
 				con = DBUtil.getConnection();
 				
-				pstmt = con.prepareStatement("updete course set start_date=? where course_id=?");
+				pstmt = con.prepareStatement("update course set start_date=? where course_id=?");
 				pstmt.setDate(1, (java.sql.Date) startDate);
 				pstmt.setInt(2, courseId);
 				
@@ -109,7 +109,7 @@ public class CourseDAO {
 			try {
 				con = DBUtil.getConnection();
 				
-				pstmt = con.prepareStatement("updete course set end_date=? where course_id=?");
+				pstmt = con.prepareStatement("update course set end_date=? where course_id=?");
 				pstmt.setDate(1, (java.sql.Date) endDate);
 				pstmt.setInt(2, courseId);
 				
@@ -185,7 +185,7 @@ public class CourseDAO {
 			return courseInfo;
 		}
 
-		// 모든 학생 검색
+		// 모든 강의 검색
 		public static ArrayList<CourseDTO> getAllCourse() throws SQLException {
 			Connection con = null;
 			PreparedStatement pstmt = null;

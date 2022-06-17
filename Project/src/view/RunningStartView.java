@@ -3,6 +3,7 @@ package view;
 import java.util.Scanner;
 
 import controller.CourseController;
+import dto.CourseDTO;
 
 public class RunningStartView {
 
@@ -32,9 +33,14 @@ public class RunningStartView {
 //
 //		}
 //		controller.allCourse();
-		controller.Course("Network");
-//		controller.updateCourseStartDate(1, 2022-03-11);
+//		controller.Course("Network");
+//		controller.updateCourseName(1, "Network");
+		
+//		controller.updateCourseStartDate(1, "2022-03-11");
 //		controller.deleteCourse("React");
+		
+//		controller.addCourse(new CourseDTO(1, "Java", "2022-01-22", "2022-02-22", 1));
+		controller.allCourse();
 		
 	}
 }

@@ -2,7 +2,9 @@ package controller;
 
 import java.sql.Date;
 import java.sql.SQLException;
+import java.text.SimpleDateFormat;
 
+import dto.CourseDTO;
 import exception.NotExistException;
 import service.CourseService;
 import view.RunningEndView;
@@ -19,6 +21,11 @@ public class CourseController {
 	public static CourseController getInstance() {
 		return instance;
 	}
+	
+//	public Date stringToDate(String stringDate) {
+//		String strDate = java.sql.Date.valueOf(stringDate);
+//		return ;
+//	}
 
 	// 모등 강의 검색
 	public void allCourse() {
@@ -42,6 +49,15 @@ public class CourseController {
 			e.printStackTrace();
 		}
 	}
+	
+	public void addCourse(CourseDTO course, int instructorId) {
+		try {
+			service.addCourse(course, instructorId);
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+	}
+	
 
 	// 강의 이름 업데이트
 	public void updateCourseName(int courseId, String courseName) {
@@ -56,9 +72,9 @@ public class CourseController {
 	}
 
 	// 강의 시작 일자 업데이트
-	public void updateCourseStartDate(int courseId, Date startDate) {
+	public void updateCourseStartDate(int courseId, String startDate) {
 		try {
-			RunningEndView.updateCourseStartDateView(service.updateCourseStartDate(courseId, startDate));
+			RunningEndView.updateCourseStartDateView(service.updateCourseStartDate(courseId, java.sql.Date.valueOf(startDate)));
 		} catch (SQLException e) {
 			e.printStackTrace();
 		} catch (NotExistException e) {
@@ -68,9 +84,9 @@ public class CourseController {
 	}
 
 	// 강의 종료 일자 업데이트
-	public void updateCourseEndDate(int courseId, Date endDate) {
+	public void updateCourseEndDate(int courseId, String endDate) {
 		try {
-			RunningEndView.updateCourseEndDateView(service.updateCourseEndDate(courseId, endDate));
+			RunningEndView.updateCourseEndDateView(service.updateCourseEndDate(courseId, java.sql.Date.valueOf(endDate)));
 		} catch (SQLException e) {
 			e.printStackTrace();
 		} catch (NotExistException e) {
