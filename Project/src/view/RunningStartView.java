@@ -13,9 +13,11 @@ public class RunningStartView {
 		while (true) {
 			System.out.println("강의 정보 데이터베이스");
 			System.out.println("1. 모든 정보 출력");
-			System.out.println("2. 특정 인물 검색");
-			System.out.println("3. 특정 인물 수정");
-			System.out.println("3. 출결사항 및 교육비 출력");
+			System.out.println("2. 검색");
+			System.out.println("3. 수정");
+			System.out.println("4. 출결사항 및 교육비 출력");
+			System.out.println("5. 추가");
+			System.out.println("6. 삭제");
 			System.out.println("");
 			System.out.println();
 			int num = sc.nextInt();
@@ -35,6 +37,7 @@ public class RunningStartView {
 			System.out.println("1.학생의 모든 정보 출력");
 			System.out.println("2.강사의 모든 정보 출력");
 			System.out.println("3.담당자 모든 정보 출력");
+			System.out.println("4.강의 모든 정보 출력");
 			int select = sc.nextInt();
 			switch (select) {
 			case 1:
@@ -48,6 +51,7 @@ public class RunningStartView {
 			System.out.println("1.학생 인물 검색");
 			System.out.println("2.강사 인물 검색");
 			System.out.println("3.담당자 인물 검색");
+			System.out.println("4.강의 검색");
 			System.out.println();
 			int second = sc.nextInt();
 			switch (second) {
@@ -64,6 +68,7 @@ public class RunningStartView {
 			System.out.println("1.학생 정보 업데이트");
 			System.out.println("2.강사 정보 업데이트");
 			System.out.println("3.담당자 정보 업데이트");
+			System.out.println("4.강의 정보 업데이트");
 			System.out.println();
 			sc.nextLine();
 			int third = sc.nextInt();
@@ -98,6 +103,27 @@ public class RunningStartView {
 			System.out.println("학생 번호를 입력해주세요:");
 			System.out.println();
 //			int num = sc.nextInt();
+			break;
+		case 5:
+			System.out.println("1.학생 정보 추가");
+			System.out.println("2.강사 정보 추가");
+			System.out.println("3.담당자 정보 추가");
+			System.out.println("4.강의 정보 추가");
+			int insert_std = sc.nextInt();
+			switch(insert_std) {
+			case 1:
+				studentctrl.insertStudent();			
+				break;
+			case 2:
+				break;
+			case 3:
+				break;
+			}
+			break;
+		case 6:
+			System.out.println("1.학생 정보 삭제");
+			System.out.println("2.강사 정보 삭제");
+			System.out.println("3.담당자 정보 삭제");
 			break;
 
 		}
