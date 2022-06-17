@@ -1,4 +1,5 @@
 package model;
+
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
@@ -11,7 +12,7 @@ import utils.DBUtil;
 public class StudentDAO {
 
 	// 학생 정보 생성
-	public static boolean addStudent(StudentDTO student, int managerId ) throws SQLException {
+	public static boolean addStudent(StudentDTO student, int managerId) throws SQLException {
 		Connection conn = null;
 		PreparedStatement pstmt = null;
 		try {
@@ -33,90 +34,96 @@ public class StudentDAO {
 		}
 		return false;
 	}
-	
-	// 학생 ID로 담당자 정보 수정 - 보류
-//		public static boolean updateStudent() throws SQLException {
-//			Connection con = null;
-//			PreparedStatement pstmt = null;
-//			try {
-//				con = DBUtil.getConnection();
-//
-//				pstmt = con.prepareStatement("query");
-//				pstmt.setString(1, x);
-//				
-//				int result = pstmt.executeUpdate();
-//				if (result == 1) {
-//					return true;
-//				}
-//			} finally {
-//				DBUtil.close(con, pstmt);
-//			}
-//			return false;
-//		}
 
-		// 학생 ID로 학생 정보 삭제
-		public static boolean deleteStudent(String managerId) throws SQLException {
-			Connection con = null;
-			PreparedStatement pstmt = null;
-			try {
-				con = DBUtil.getConnection();
-				pstmt = con.prepareStatement("delete from student where student_id=?");
-				pstmt.setString(1, managerId);
-				int result = pstmt.executeUpdate();
-				if (result == 1) {
-					return true;
-				}
-			} finally {
-				DBUtil.close(con, pstmt);
+//	 학생 ID로 담당자 정보 수정 - 보류
+	public static boolean updateStudent(int id, int selectNum, String modify) throws SQLException {
+		Connection con = null;
+		PreparedStatement pstmt = null;
+		try {
+			con = DBUtil.getConnection();
+			if (selectNum == 1) {
+				pstmt = con.prepareStatement("update student set student_addr=? where student_id=? ");
+				pstmt.setInt(1, id);
+				pstmt.setString(2, modify);
+
+			} else {
+				pstmt = con.prepareStatement("update student set student_phone=? where student_id=? ");
+				pstmt.setInt(1, id);
+				pstmt.setString(2, modify);
+
 			}
-			return false;
+
+			int result = pstmt.executeUpdate();
+			System.out.println(result);
+			if (result == 1) {
+				return true;
+			}
+		} finally {
+			DBUtil.close(con, pstmt);
 		}
+		return false;
+	}
 
-		// 학생 ID로 학생 정보 검색
-		public static StudentDTO getStudent(String studentId) throws SQLException {
-			Connection con = null;
-			PreparedStatement pstmt = null;
-			ResultSet rset = null;
-			StudentDTO studentInfo = null;
-
-			try {
-				con = DBUtil.getConnection();
-				pstmt = con.prepareStatement("select * from student where student_name=?");
-				pstmt.setString(1, studentId);
-				rset = pstmt.executeQuery();
-				if (rset.next()) {
-					studentInfo = new StudentDTO(rset.getInt(1), rset.getString(2), rset.getInt(3),
-							rset.getString(4), rset.getString(5), rset.getString(6),rset.getInt(7),
-							rset.getInt(8), rset.getInt(9));
-				}
-			} finally {
-				DBUtil.close(con, pstmt, rset);
+	// 학생 ID로 학생 정보 삭제
+	public static boolean deleteStudent(String managerId) throws SQLException {
+		Connection con = null;
+		PreparedStatement pstmt = null;
+		try {
+			con = DBUtil.getConnection();
+			pstmt = con.prepareStatement("delete from student where student_id=?");
+			pstmt.setString(1, managerId);
+			int result = pstmt.executeUpdate();
+			if (result == 1) {
+				return true;
 			}
-			return studentInfo;
+		} finally {
+			DBUtil.close(con, pstmt);
 		}
+		return false;
+	}
 
-		// 모든 학생 검색
-		public static ArrayList<StudentDTO> getAllStudent() throws SQLException {
-			Connection con = null;
-			PreparedStatement pstmt = null;
-			ResultSet rset = null;
-			ArrayList<StudentDTO> allStudent = null;
-			try {
-				con = DBUtil.getConnection();
-				pstmt = con.prepareStatement("select * from student");
-				rset = pstmt.executeQuery();
-				
-				allStudent = new ArrayList<StudentDTO>();
-				while (rset.next()) {
-					allStudent.add(new StudentDTO(rset.getInt(1), rset.getString(2), rset.getInt(3),
-							rset.getString(4), rset.getString(5), rset.getString(6),rset.getInt(7),
-							rset.getInt(8), rset.getInt(9)));
-				}
-			} finally {
-				DBUtil.close(con, pstmt, rset);
+	// 학생 이름으로 학생 정보 검색
+	public static StudentDTO getStudent(String name) throws SQLException {
+		Connection con = null;
+		PreparedStatement pstmt = null;
+		ResultSet rset = null;
+		StudentDTO studentInfo = null;
+
+		try {
+			con = DBUtil.getConnection();
+			pstmt = con.prepareStatement("select * from student where student_name=?");
+			pstmt.setString(1, name);
+			rset = pstmt.executeQuery();
+			if (rset.next()) {
+				studentInfo = new StudentDTO(rset.getInt(1), rset.getString(2), rset.getInt(3), rset.getString(4),
+						rset.getString(5), rset.getString(6), rset.getInt(7), rset.getInt(8), rset.getInt(9));
 			}
-			return allStudent;
-		} 
-	
+		} finally {
+			DBUtil.close(con, pstmt, rset);
+		}
+		return studentInfo;
+	}
+
+	// 모든 학생 검색
+	public static ArrayList<StudentDTO> getAllStudent() throws SQLException {
+		Connection con = null;
+		PreparedStatement pstmt = null;
+		ResultSet rset = null;
+		ArrayList<StudentDTO> allStudent = null;
+		try {
+			con = DBUtil.getConnection();
+			pstmt = con.prepareStatement("select * from student");
+			rset = pstmt.executeQuery();
+
+			allStudent = new ArrayList<StudentDTO>();
+			while (rset.next()) {
+				allStudent.add(new StudentDTO(rset.getInt(1), rset.getString(2), rset.getInt(3), rset.getString(4),
+						rset.getString(5), rset.getString(6), rset.getInt(7), rset.getInt(8), rset.getInt(9)));
+			}
+		} finally {
+			DBUtil.close(con, pstmt, rset);
+		}
+		return allStudent;
+	}
 
 }

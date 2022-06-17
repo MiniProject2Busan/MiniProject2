@@ -9,6 +9,7 @@ public class RunningEndView {
 	public static void Error(String msg) {
 		System.out.println(msg);
 	}
+
 	public static void projectListView(ArrayList<StudentDTO> allProject) {
 //		System.out.println(allProject);
 		int length = allProject.size();
@@ -17,5 +18,10 @@ public class RunningEndView {
 				System.out.println("검색정보 " + (index + 1) + " - " + allProject.get(index));
 			}
 		}
+
+	}
+
+	public static void selectView(StudentDTO studentinfo) {
+		System.out.println(studentinfo);
 	}
 }

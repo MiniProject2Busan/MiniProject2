@@ -23,12 +23,18 @@ public class StudentService {
 	}
 
 	// 특정 학생 정보 출력
-	public StudentDTO getOneStudnet(String Std_id) {
+	public StudentDTO getOneStudnet(String name) {
 		try {
-			return StudentDAO.getStudent(Std_id);
+			return StudentDAO.getStudent(name);
 		} catch (SQLException e) {
 			System.out.println("에러");
 			e.printStackTrace();
 		}
+		return null;
+	}
+
+	public StudentDTO modifyStudent(int id, int selectNum, String modify) throws SQLException {
+		StudentDAO.updateStudent(id, selectNum, modify);
+		return null;
 	}
 }
