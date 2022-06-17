@@ -9,8 +9,6 @@ import controller.CourseController;
 import dto.CourseDTO;
 
 public class RunningEndView {
-	static CourseController controller = CourseController.getInstance();
-
 	// 모든 강의 정보 출력
 	public static void courseListView(ArrayList<CourseDTO> allCourse) {
 		int length = allCourse.size();
@@ -65,6 +63,13 @@ public class RunningEndView {
 	}
 
 	public static void selectView(StudentDTO studentinfo) {
+		if(studentinfo == null) {
+			System.out.println("존재하지 않는 회원입니다.");
+		}
 		System.out.println(studentinfo);
+	}
+
+	public static void getsalary(int data) {
+		System.out.println("총 금액은 "+data+"원 입니다.");
 	}
 }

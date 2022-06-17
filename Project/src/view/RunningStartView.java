@@ -57,9 +57,8 @@ public class RunningStartView {
 			switch (second) {
 			case 1:
 				System.out.println("조회할 학생의 이름 검색:");
-				sc.nextLine();
-				String id = sc.nextLine();
-				studentctrl.selectStudent(id);
+				String name = sc.next();
+				studentctrl.selectStudent(name);
 				break;
 			case 2:
 			}
@@ -70,7 +69,7 @@ public class RunningStartView {
 			System.out.println("3.담당자 정보 업데이트");
 			System.out.println("4.강의 정보 업데이트");
 			System.out.println();
-			sc.nextLine();
+			sc.next();
 			int third = sc.nextInt();
 			switch (third) {
 			case 1:
@@ -81,17 +80,15 @@ public class RunningStartView {
 				System.out.println("\n1. 주소");
 				System.out.println("2. 전화번호\n");
 				int thirdNum = sc.nextInt();
-				sc.nextLine();
+				sc.next();
 				if (thirdNum == 1) {
 					System.out.println("주소를 입력해주세요:");
 				} else {
 					System.out.println("전화번호를 입력해주세요:");
 				}
-				modify = sc.nextLine(); // 주소나 번호 (비교대상은 thirdNum)
+				modify = sc.next(); // 주소나 번호 (비교대상은 thirdNum)
 				studentctrl.updateStudentPhone(id, thirdNum, modify);
-
 				break;
-
 			case 2:
 				break;
 			case 3:
@@ -100,17 +97,18 @@ public class RunningStartView {
 			break;
 		case 4: // 급여정보
 			System.out.println("===== 급여 정보 검색 =====");
-			System.out.println("학생 번호를 입력해주세요:");
+			System.out.println("학생 이름을 입력해주세요:");
 			System.out.println();
-//			int num = sc.nextInt();
+			String stdName= sc.next();
+			studentctrl.salaryCal(stdName);
 			break;
-		case 5:
+		case 5:	//정보 추가 
 			System.out.println("1.학생 정보 추가");
 			System.out.println("2.강사 정보 추가");
 			System.out.println("3.담당자 정보 추가");
 			System.out.println("4.강의 정보 추가");
-			int insert_std = sc.nextInt();
-			switch(insert_std) {
+			int insert = sc.nextInt();
+			switch(insert) {
 			case 1:
 				studentctrl.insertStudent();			
 				break;
@@ -124,8 +122,22 @@ public class RunningStartView {
 			System.out.println("1.학생 정보 삭제");
 			System.out.println("2.강사 정보 삭제");
 			System.out.println("3.담당자 정보 삭제");
+			System.out.println("4.강의 정보 삭제");
+			int delete = sc.nextInt();
+			switch(delete) {
+			case 1:
+				studentctrl.deleteStudent();
+				break;
+			case 2:
+				break;
+			case 3:
+				break;
+			case 4:
+				break;
+			}
 			break;
-
+		default:
+			System.out.println("입력값이 잘못되었습니다.");
 		}
 	}
 }
