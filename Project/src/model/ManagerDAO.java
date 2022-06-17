@@ -23,6 +23,9 @@ public class ManagerDAO {
 			pstmt.setString(3, manager.getManagerPhone());
 			
 			int result = pstmt.executeUpdate();
+			if (result == 1) {
+				return true;
+			}
 		} finally {
 			DBUtil.close(conn, pstmt);
 		}

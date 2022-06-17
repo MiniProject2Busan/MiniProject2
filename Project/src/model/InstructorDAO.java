@@ -23,6 +23,9 @@ public class InstructorDAO {
 			pstmt.setString(3, instructor.getInstructorPhone());
 			
 			int result = pstmt.executeUpdate();
+			if (result == 1) {
+				return true;
+			}
 		} finally {
 			DBUtil.close(conn, pstmt);
 		}

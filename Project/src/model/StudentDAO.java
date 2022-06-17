@@ -29,6 +29,9 @@ public class StudentDAO {
 			pstmt.setInt(9, managerId);
 			
 			int result = pstmt.executeUpdate();
+			if (result == 1) {
+				return true;
+			}
 		} finally {
 			DBUtil.close(conn, pstmt);
 		}
