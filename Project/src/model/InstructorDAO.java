@@ -72,7 +72,7 @@ public class InstructorDAO {
 	      }
 	      return false;
 	   }
-	
+
 	
 	   // 강사 ID로 강사 정보 삭제
 	   public static boolean deleteInstructor(int instructorId) throws SQLException {
