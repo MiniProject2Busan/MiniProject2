@@ -11,7 +11,16 @@ public class CourseDTO {
 
 	public CourseDTO() {
 	}
-
+	
+	// 강의 정보 입력
+	public CourseDTO(String courseName, Date startDate, Date endDate) {
+		super();
+		this.courseName = courseName;
+		this.startDate = startDate;
+		this.endDate = endDate;
+	}
+	
+	// 강의 정보 출력
 	public CourseDTO(int courseId, String courseName, Date startDate, Date endDate, int instructorId) {
 		super();
 		this.courseId = courseId;

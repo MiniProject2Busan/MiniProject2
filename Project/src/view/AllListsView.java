@@ -5,7 +5,6 @@ import java.util.Scanner;
 import controller.MainController;
 
 public class AllListsView {
-
 	//
 	public static void secondView(int num) {
 		switch (num) {

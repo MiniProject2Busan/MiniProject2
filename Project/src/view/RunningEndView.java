@@ -2,6 +2,9 @@ package view;
 
 import java.util.ArrayList;
 
+
+import dto.StudentDTO;
+
 import controller.CourseController;
 import dto.CourseDTO;
 
@@ -13,7 +16,7 @@ public class RunningEndView {
 		int length = allCourse.size();
 		if(length != 0) {
 			for (int index = 0; index < length; index++) {
-				System.out.println("검색정보 " +(index + 1) + " - " + allCourse.get(index));
+				System.out.println((index + 1) + ". "+ allCourse.get(index));
 			}
 		}
 	}
@@ -48,5 +51,20 @@ public class RunningEndView {
 	
 	public static void Error(String msg) {
 		System.out.println(msg);
+	}
+
+	public static void projectListView(ArrayList<StudentDTO> allProject) {
+//		System.out.println(allProject);
+		int length = allProject.size();
+		if (length != 0) {
+			for (int index = 0; index < length; index++) {
+				System.out.println("검색정보 " + (index + 1) + " - " + allProject.get(index));
+			}
+		}
+
+	}
+
+	public static void selectView(StudentDTO studentinfo) {
+		System.out.println(studentinfo);
 	}
 }

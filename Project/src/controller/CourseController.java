@@ -2,7 +2,6 @@ package controller;
 
 import java.sql.Date;
 import java.sql.SQLException;
-import java.text.SimpleDateFormat;
 
 import dto.CourseDTO;
 import exception.NotExistException;
@@ -21,11 +20,6 @@ public class CourseController {
 	public static CourseController getInstance() {
 		return instance;
 	}
-	
-//	public Date stringToDate(String stringDate) {
-//		String strDate = java.sql.Date.valueOf(stringDate);
-//		return ;
-//	}
 
 	// 모등 강의 검색
 	public void allCourse() {
@@ -46,18 +40,29 @@ public class CourseController {
 		} catch (SQLException e) {
 			e.printStackTrace();
 		} catch (NotExistException e) {
-			e.printStackTrace();
+			RunningEndView.Error("존재하지 않는 강의입니다.");
 		}
 	}
-	
+
+	public boolean selectCourse(int courseId) {
+		try {
+			RunningEndView.courseView(service.getCourseCheckId(courseId));
+			return true;
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} catch (NotExistException e) {
+			RunningEndView.Error("없는 강사 id 입니다.");
+		}
+		return false;
+	}
+
 	public void addCourse(CourseDTO course, int instructorId) {
 		try {
 			service.addCourse(course, instructorId);
 		} catch (SQLException e) {
-			e.printStackTrace();
+			RunningEndView.Error("없는 강사 id 입니다.");
 		}
 	}
-	
 
 	// 강의 이름 업데이트
 	public void updateCourseName(int courseId, String courseName) {
@@ -66,7 +71,7 @@ public class CourseController {
 		} catch (SQLException e) {
 			e.printStackTrace();
 		} catch (NotExistException e) {
-			e.printStackTrace();
+			RunningEndView.Error("존재하지 않는 강의입니다.");
 		}
 
 	}
@@ -74,11 +79,11 @@ public class CourseController {
 	// 강의 시작 일자 업데이트
 	public void updateCourseStartDate(int courseId, String startDate) {
 		try {
-			RunningEndView.updateCourseStartDateView(service.updateCourseStartDate(courseId, java.sql.Date.valueOf(startDate)));
+			RunningEndView.updateCourseStartDateView(service.updateCourseStartDate(courseId, Date.valueOf(startDate)));
 		} catch (SQLException e) {
 			e.printStackTrace();
 		} catch (NotExistException e) {
-			e.printStackTrace();
+			RunningEndView.Error("존재하지 않는 강의입니다.");
 		}
 
 	}
@@ -86,24 +91,28 @@ public class CourseController {
 	// 강의 종료 일자 업데이트
 	public void updateCourseEndDate(int courseId, String endDate) {
 		try {
-			RunningEndView.updateCourseEndDateView(service.updateCourseEndDate(courseId, java.sql.Date.valueOf(endDate)));
+			RunningEndView.updateCourseEndDateView(service.updateCourseEndDate(courseId, Date.valueOf(endDate)));
 		} catch (SQLException e) {
 			e.printStackTrace();
 		} catch (NotExistException e) {
-			e.printStackTrace();
+			RunningEndView.Error("존재하지 않는 강의입니다.");
 		}
 
 	}
 
 	// 강의 삭제
-	public void deleteCourse(String courseName) {
+	public void deleteCourse(int courseId) {
 		try {
-			service.deleteCourse(courseName);
-			RunningSuccessView.showSuccess("입력한 강의 삭제 성공!");
+			if (service.deleteCourse(courseId)) {
+				RunningSuccessView.showSuccess("입력한 강의 삭제 성공!");
+			} else {
+				RunningEndView.Error("존재하지 않는 강의입니다.");
+			}
 		} catch (SQLException e) {
 			e.printStackTrace();
 		} catch (NotExistException e) {
-			e.printStackTrace();
+			// 이렇게 비워도되나?
+			RunningEndView.Error("존재하지 않는 강의입니다.");
 		}
 	}
 

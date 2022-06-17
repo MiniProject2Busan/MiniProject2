@@ -2,8 +2,9 @@ package view;
 
 import java.util.Scanner;
 
-
+import controller.CourseController;
 import controller.StudentController;
+import dto.CourseDTO;
 
 public class RunningStartView {
 	static Scanner sc = new Scanner(System.in);
@@ -32,6 +33,7 @@ public class RunningStartView {
 
 	public static void secondView(int startNum) {
 		StudentController studentctrl = StudentController.getInstance();
+		CourseController courseCtrl = CourseController.getInstance();
 		switch (startNum) {
 		case 1: // 모든 정보 출력
 			System.out.println("1.학생의 모든 정보 출력");
@@ -44,6 +46,12 @@ public class RunningStartView {
 				studentctrl.allStudent();
 				break;
 			case 2:
+				break;
+			case 3:
+				break;
+			case 4:
+				courseCtrl.allCourse();
+				break;
 			}
 			break;
 
@@ -62,6 +70,14 @@ public class RunningStartView {
 				studentctrl.selectStudent(id);
 				break;
 			case 2:
+				break;
+			case 3:
+				break;
+			case 4:
+				System.out.println("조회할 강의 이름 검색:");
+				sc.nextLine();
+				String courseName = sc.nextLine();
+				courseCtrl.Course(courseName);
 			}
 			break;
 		case 3: // 특정 정보 업데이트
@@ -96,6 +112,39 @@ public class RunningStartView {
 				break;
 			case 3:
 				break;
+			case 4:
+				System.out.println("강의 정보를 업데이트 합니다.");
+				System.out.println("강의 id를 입력해 주세요");
+				int courseId = sc.nextInt(); // ++ 없는 id 예외받도록
+				if (courseCtrl.selectCourse(courseId)) {
+					System.out.println("업데이트할 정보를 선택해 주세요");
+					System.out.println("\n1. 강의명");
+					System.out.println("2. 강의 시작 일자");
+					System.out.println("3. 강의 종료 일자\n");
+					int courseNum = sc.nextInt();
+					sc.nextLine();
+
+					switch (courseNum) {
+					case 1:
+						System.out.println("강의명을 입력해 주세요:");
+						String courseName = sc.nextLine();
+						courseCtrl.updateCourseName(courseId, courseName);
+						break;
+					case 2:
+						System.out.println("강의 시작일자(yyyy-mm-dd)를 입력해 주세요:");
+						String startDate = sc.nextLine();
+						courseCtrl.updateCourseStartDate(courseId, startDate);
+						break;
+					case 3:
+						System.out.println("강의 종료일자(yyyy-mm-dd)를 입력해 주세요:");
+						String endDate = sc.nextLine();
+						courseCtrl.updateCourseStartDate(courseId, endDate);
+					}
+					break;
+				} else {
+					break;
+				}
+
 			}
 			break;
 		case 4: // 급여정보
@@ -109,14 +158,38 @@ public class RunningStartView {
 			System.out.println("2.강사 정보 추가");
 			System.out.println("3.담당자 정보 추가");
 			System.out.println("4.강의 정보 추가");
-			int insert_std = sc.nextInt();
-			switch(insert_std) {
+			int fourth = sc.nextInt();
+			sc.nextLine();
+			switch (fourth) {
 			case 1:
-				studentctrl.insertStudent();			
+//				studentctrl.insertStudent();			
 				break;
 			case 2:
 				break;
 			case 3:
+				break;
+			case 4:
+				System.out.println("강의 정보를 추가합니다");
+				System.out.println("강의 정보를 추가해 주세요!");
+
+				System.out.println("1.강의명 :");
+				String courseName = sc.nextLine();
+
+				System.out.println("2.강의 시작 일자:");
+				System.out.println("(yyyy-mm-dd)");
+				String startDate = sc.nextLine();
+
+				System.out.println("3.강의 종료 일자:");
+				System.out.println("(yyyy-mm-dd)");
+				String endDate = sc.nextLine();
+
+				System.out.println("4.강사 id");
+				int instructorId = sc.nextInt();
+
+				CourseDTO course = new CourseDTO(courseName, java.sql.Date.valueOf(startDate),
+						java.sql.Date.valueOf(endDate));
+
+				courseCtrl.addCourse(course, instructorId);
 				break;
 			}
 			break;
@@ -124,6 +197,21 @@ public class RunningStartView {
 			System.out.println("1.학생 정보 삭제");
 			System.out.println("2.강사 정보 삭제");
 			System.out.println("3.담당자 정보 삭제");
+			System.out.println("4.강의 정보 삭제");
+			int sixth = sc.nextInt();
+			switch (sixth) {
+			case 1:
+				break;
+			case 2:
+				break;
+			case 3:
+				break;
+			case 4:
+				System.out.println("조회할 강의id:");
+				sc.nextLine();
+				int courseId = sc.nextInt();
+				courseCtrl.deleteCourse(courseId);
+			}
 			break;
 
 		}
