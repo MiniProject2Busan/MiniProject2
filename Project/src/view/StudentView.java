@@ -5,10 +5,10 @@ import java.util.Scanner;
 import dto.StudentDTO;
 
 public class StudentView {
+	static Scanner sc = new Scanner(System.in);
 	// 학생추가 뷰
 	public static StudentDTO insertView() {
-//		Scanner sc = null;
-		try(Scanner sc = new Scanner(System.in);) {
+		try {
 			System.out.println("학생의 이름을 입력하세요:");
 			String name = sc.next();
 			System.out.println("학생의 나이를 입력하세요:");
@@ -26,12 +26,12 @@ public class StudentView {
 			return student;			
 		} catch (Exception e) {
 			RunningEndView.Error("입력값이 잘못되었습니다.");
+		}finally{
+			sc.close();
 		}
 		return null;
 	}
 	public static String deleteView() {
-		Scanner sc = null;
-		sc = new Scanner(System.in);
 		System.out.println("학생의 id를 입력하세요:");
 		String id = sc.next();
 		return id;
