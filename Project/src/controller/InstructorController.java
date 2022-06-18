@@ -6,7 +6,6 @@ import java.util.InputMismatchException;
 
 import dto.CourseDTO;
 import dto.InstructorDTO;
-import exception.NotExistException;
 import service.CourseService;
 import service.InstructorService;
 import view.RunningEndView;
@@ -87,8 +86,6 @@ public class InstructorController {
 
 			service.instructorDelete(instuctorId);
 		} catch (SQLException e) {
-			e.printStackTrace();
-		} catch (NotExistException e) {
 			e.printStackTrace();
 		}
 	}
