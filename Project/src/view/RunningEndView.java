@@ -4,6 +4,8 @@ import java.util.ArrayList;
 
 import dto.CourseDTO;
 import dto.StudentDTO;
+import dto.InstructorDTO;
+import dto.ManagerDTO;
 
 public class RunningEndView {
 	// 모든 강의 정보 출력
@@ -15,12 +17,68 @@ public class RunningEndView {
 			}
 		}
 	}
+	/**
+	 * Instructor
+	 * */
+	// 모든 강사 정보 출력
+	public static void instructorView(ArrayList<InstructorDTO> instructorList) {
+		int length = instructorList.size();
+		if (length != 0) {
+			for (int index = 0; index < length; index++) {
+				System.out.println("검색정보 " + (index + 1) + " - " + instructorList.get(index));
+			}
+		}
 
+	}
+	
+	// 특정 강사 정보 출력
+	public static void instructorVeiw(InstructorDTO instructor) {
+		if(instructor != null) {
+			System.out.println(instructor);
+		} else {
+			System.out.println("해당하는 데이터가 존재하지 않습니다!");
+		}
+	}
+	
+	// 특정 강사 정보 수정
+	public static void updateView(boolean check) {
+		if(check) {
+			System.out.println("해당하는 데이터가 수정 되었습니다!");
+			System.out.println();
+		} else {
+			System.out.println("해당하는 데이터가 수정되지 않았습니다!");
+			System.out.println();
+		}
+	}
+	
+	/**
+	 * Manager
+	 * */
+	// 모든 담당자 정보 출력
+	public static void managerView(ArrayList<ManagerDTO> managerList) {
+		int length = managerList.size();
+		if (length != 0) {
+			for (int index = 0; index < length; index++) {
+				System.out.println("검색정보 " + (index + 1) + " - " + managerList.get(index));
+			}
+		}
+
+	}
+	
+	// 특정 담당자 정보 출력
+	public static void managerView(ManagerDTO manager) {
+		if(manager != null) {
+			System.out.println(manager);
+		} else {
+			System.out.println("해당하는 데이터가 존재하지 않습니다!");
+		}
+	}
+	
 	// 특정 강의 정보 출력
 	public static void courseView(CourseDTO course) {
 		System.out.println(course);
 	}
-
+	
 	public static void updateCourseNameView(boolean check) {
 		if (check) {
 			System.out.println("강의 이름이 수정 되었습니다!");
@@ -59,7 +117,8 @@ public class RunningEndView {
 		}
 
 	}
-
+	
+	
 	public static void selectView(StudentDTO studentinfo) {
 		if (studentinfo == null) {
 			System.out.println("존재하지 않는 회원입니다.");

@@ -34,8 +34,8 @@ public class InstructorDTO {
 	
 	@Override
 	public String toString() {
-		return "강사아이디 = " + instructor_id + "\n강사이름 = " + instructor_name
-				+ "\n강사연락처 = " + instructor_phone;
+		return "InstructorDTO [instructor_id=" + instructor_id + ", instructor_name=" + instructor_name
+				+ ", instructor_phone=" + instructor_phone + "]";
 	}
 	
 }
