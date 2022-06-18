@@ -70,7 +70,7 @@ public class SecondView {
 			case 4:
 				break;
 			case 5: // 출결 업데이트
-				studentV.updateView();
+				studentV.updateSalary();
 				break;
 			default:
 				System.out.println("입력값이 잘못되었습니다.");
