@@ -227,11 +227,10 @@ public class RunningStartView {
 				int instructorId = sc.nextInt();
 				sc.nextLine();
 				
-				InstructorDTO instructor = instructorCtrl.checkInstructorId(1);
+				InstructorDTO instructor = instructorCtrl.checkInstructorId(instructorId);
 				if(instructor != null) {
 					System.out.println(instructor);
-					System.out.println("정말 삭제하시겠습니까?");
-				
+					
 					instructorCtrl.deleteInstructor(instructorId);
 				} else {
 					System.out.println("일치하는 데이터가 존재하지 않습니다.");
