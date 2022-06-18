@@ -20,7 +20,7 @@ public class CourseController {
 		return instance;
 	}
 
-	// 모등 강의 검색
+	// 모든 강의 검색
 	public void allCourse() {
 		try {
 			RunningEndView.courseListView(service.getAllCourse());

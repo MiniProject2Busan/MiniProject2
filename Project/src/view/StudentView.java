@@ -1,11 +1,12 @@
 package view;
 
+import java.util.NoSuchElementException;
 import java.util.Scanner;
 
 import controller.StudentController;
 import dto.StudentDTO;
 
-public class StudentView {
+public class StudentView implements ViewInterface {
 	private StudentController studentctrl = StudentController.getInstance();
 	private static StudentView studentV = new StudentView();
 
@@ -17,12 +18,12 @@ public class StudentView {
 	}
 
 	// 학생 모든 정보 출력
-	public void allStudent() {
+	public void allPeople() {
 		studentctrl.allStudent();
 	}
 
 	// 학생추가 뷰
-	public void insertView() {
+	public void insertView() throws NoSuchElementException {
 		try (Scanner sc = new Scanner(System.in)) {
 			System.out.println("학생의 이름을 입력하세요:");
 			String name = sc.next();
@@ -45,19 +46,19 @@ public class StudentView {
 	}
 
 	// 학생 삭제 뷰
-	public static String deleteView() {
+	public void deleteView() throws NoSuchElementException {
 		Scanner sc = new Scanner(System.in);
 		System.out.println("학생의 id를 입력하세요:");
-		String id = sc.next();
-		return id;
+		int studentId = sc.nextInt();
+		studentctrl.deleteStudent(studentId);
+		sc.close();
 	}
 
 	// 학생 정보 업데이트 뷰
-	public void updateStudent() {
+	public void updateView() throws NoSuchElementException {
 		Scanner sc = new Scanner(System.in);
 		String modify; // 주소나 전화번호 받음
 		System.out.println("학생의 정보를 업데이트합니다.");
-		System.out.println("- - - - - - - - - -");
 		System.out.println("학생의 id를 입력해주세요:");
 		int id = sc.nextInt();
 		System.out.println("\n1. 주소");
@@ -69,29 +70,31 @@ public class StudentView {
 			System.out.println("전화번호를 입력해주세요:");
 		}
 		modify = sc.next(); // 주소나 번호 (비교대상은 thirdNum)
-		sc.close();
 		studentctrl.updateStudent(id, thirdNum, modify);
+		sc.close();
 	}
 
 	// 특정 정보 검색 뷰
-	public void selectStudent() {
+	public void selectView() throws NoSuchElementException {
 		Scanner sc = new Scanner(System.in);
 		System.out.println("조회할 학생의 이름 검색:");
 		String name = sc.next();
 		studentctrl.selectStudent(name);
+		sc.close();
 	}
 
 	// 급여정보 확인
-	public void searchSalary() {
+	public void searchSalary() throws NoSuchElementException {
 		Scanner sc = new Scanner(System.in);
 		System.out.println("===== 급여 정보 검색 =====");
 		System.out.println("학생 이름을 입력해주세요:");
 		System.out.println();
 		String stdName = sc.next();
 		studentctrl.salaryCal(stdName);
+		sc.close();
 	}
 
-	public void updateAttendance() {
+	public void updateV() throws NoSuchElementException {
 		Scanner sc = new Scanner(System.in);
 		System.out.println("학생의 이름을 입력해주세요:");
 //		sc.nextLine();
@@ -101,5 +104,6 @@ public class StudentView {
 		System.out.println("2.결석정보 업데이트");
 		int selectAttendance = sc.nextInt();
 		studentctrl.updateAttendance(selectAttendance, stdName);
+		sc.close();
 	}
 }

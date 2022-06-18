@@ -62,9 +62,9 @@ public class StudentController {
 	}
 
 	// 특정 학생 삭제
-	public void deleteStudent() {
+	public void deleteStudent(int studentId) {
 		try {
-			if (service.deleteStudent(StudentView.deleteView())) {
+			if (service.deleteStudent(studentId)) {
 				RunningSuccessView.showSuccess("삭제완료");
 			} else {
 				RunningEndView.Error("존재하지 않는 회원입니다.");

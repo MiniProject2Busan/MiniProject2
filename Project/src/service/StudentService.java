@@ -38,8 +38,8 @@ public class StudentService {
 		StudentDAO.addStudent(student);
 	}
 
-	public boolean deleteStudent(String id) throws SQLException {
-		return StudentDAO.deleteStudent(id);
+	public boolean deleteStudent(int studentId) throws SQLException {
+		return StudentDAO.deleteStudent(studentId);
 
 	}
 
