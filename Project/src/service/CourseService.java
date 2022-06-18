@@ -25,11 +25,8 @@ public class CourseService {
 		}
 	}
 	
-	public void notExistCourseId(int courseId) throws SQLException, NotExistException {
+	public void notExistCourseId(int courseId) throws SQLException{
 		CourseDTO course = CourseDAO.getCourseId(courseId);
-		if (course == null) {
-			throw new NotExistException("검색하신 강의 Id가 없습니다.");
-		}
 	}
 	
 	// 모든 강의 정보 반환
@@ -38,11 +35,8 @@ public class CourseService {
 	}
 	
 	// 강의 이름으로 검색
-	public CourseDTO getCourse(String courseName) throws SQLException, NotExistException {
+	public CourseDTO getCourse(String courseName) throws SQLException{
 		CourseDTO course = CourseDAO.getCourseName(courseName);
-		if (course == null) {
-			throw new NotExistException();
-		}
 		return course;
 	}
 	
@@ -59,21 +53,21 @@ public class CourseService {
 //	}
 	
 	// 기존 강의 이름 수정 
-	public boolean updateCourseName(int courseId, String courseName) throws SQLException, NotExistException {
+	public boolean updateCourseName(int courseId, String courseName) throws SQLException{
 		notExistCourseId(courseId);
 		boolean check = CourseDAO.updateCourseName(courseId, courseName);	
 		return check;
 	}
 	
 	// 기존 강의 시작 일자 수정
-	public boolean updateCourseStartDate(int courseId, Date startDate) throws SQLException, NotExistException {
+	public boolean updateCourseStartDate(int courseId, Date startDate) throws SQLException{
 		notExistCourseId(courseId);
 		boolean check = CourseDAO.updateCourseStartDate(courseId, startDate);
 		return check;
 	}
 	
 	// 기존 강의 종료 일자 수정
-	public boolean updateCourseEndDate(int courseId, Date endDate) throws SQLException, NotExistException {
+	public boolean updateCourseEndDate(int courseId, Date endDate) throws SQLException{
 		notExistCourseId(courseId);
 		boolean check = CourseDAO.updateCourseEndDate(courseId, endDate);
 		return check;
@@ -81,17 +75,12 @@ public class CourseService {
 	
 	
 	// 강의 이름으로 삭제
-	public boolean deleteCourse(String courseName) throws SQLException, NotExistException {
-		boolean check = CourseDAO.deleteCourse(courseName);
-		if (check == false) {
-			notExistCourseName(courseName);
-		}else {
-			return check;
-		}return false;
+	public boolean deleteCourse(String courseName) throws SQLException{
+		return(CourseDAO.deleteCourse(courseName));
 	}
 	
 	// id로 삭제
-	public boolean deleteCourse(int courseId) throws SQLException, NotExistException {
+	public boolean deleteCourse(int courseId) throws SQLException{
 		boolean check = CourseDAO.deleteCourse(courseId);
 		if (check == false) {
 //			notExistCourseName();
