@@ -24,7 +24,7 @@ public class StudentView implements ViewInterface {
 
 	// 학생추가 뷰
 	public void insertView() throws NoSuchElementException {
-		try (Scanner sc = new Scanner(System.in)) {
+			Scanner sc = new Scanner(System.in);
 			System.out.println("학생의 이름을 입력하세요:");
 			String name = sc.next();
 			System.out.println("학생의 나이를 입력하세요:");
@@ -40,9 +40,6 @@ public class StudentView implements ViewInterface {
 			int manager = sc.nextInt();
 			StudentDTO student = new StudentDTO(name, age, phone, addr, seatId, manager);
 			studentctrl.insertStudent(student);
-		} catch (Exception e) {
-			RunningEndView.Error("입력값이 잘못되었습니다.");
-		}
 	}
 
 	// 학생 삭제 뷰
@@ -51,7 +48,6 @@ public class StudentView implements ViewInterface {
 		System.out.println("학생의 id를 입력하세요:");
 		int studentId = sc.nextInt();
 		studentctrl.deleteStudent(studentId);
-		sc.close();
 	}
 
 	// 학생 정보 업데이트 뷰
@@ -71,7 +67,6 @@ public class StudentView implements ViewInterface {
 		}
 		modify = sc.next(); // 주소나 번호 (비교대상은 thirdNum)
 		studentctrl.updateStudent(id, thirdNum, modify);
-		sc.close();
 	}
 
 	// 특정 정보 검색 뷰
@@ -80,7 +75,6 @@ public class StudentView implements ViewInterface {
 		System.out.println("조회할 학생의 이름 검색:");
 		String name = sc.next();
 		studentctrl.selectStudent(name);
-		sc.close();
 	}
 
 	// 급여정보 확인
@@ -91,10 +85,9 @@ public class StudentView implements ViewInterface {
 		System.out.println();
 		String stdName = sc.next();
 		studentctrl.salaryCal(stdName);
-		sc.close();
 	}
 
-	public void updateV() throws NoSuchElementException {
+	public void updateSalary() throws NoSuchElementException {
 		Scanner sc = new Scanner(System.in);
 		System.out.println("학생의 이름을 입력해주세요:");
 //		sc.nextLine();
@@ -104,6 +97,5 @@ public class StudentView implements ViewInterface {
 		System.out.println("2.결석정보 업데이트");
 		int selectAttendance = sc.nextInt();
 		studentctrl.updateAttendance(selectAttendance, stdName);
-		sc.close();
 	}
 }
