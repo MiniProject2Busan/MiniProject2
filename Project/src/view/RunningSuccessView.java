@@ -5,3 +5,4 @@ public class RunningSuccessView {
 		System.out.println(msg);
 	}
 }
+
