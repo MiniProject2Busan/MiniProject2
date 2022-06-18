@@ -98,19 +98,21 @@ public class InstructorDAO {
 	
 	   // 강사 ID로 강사 정보 삭제
 	   public static boolean deleteInstructor(int instructorId) throws SQLException {
-	      Connection conn = null;
-	      PreparedStatement pstmt = null;
-	      try {
-	         conn = DBUtil.getConnection();
-	         pstmt = conn.prepareStatement("delete from instructor, course where instructor_id=? OR instructor_instructor_id=?");
-	         pstmt = conn.prepareStatement("delete from instructor");
-	
-	         int result = pstmt.executeUpdate();
-	         if (result == 1) {
-	            return true;
-	         }
+		   System.out.println("id: " + instructorId);
+		   Connection conn = null;
+		   PreparedStatement pstmt = null;
+		   
+		   try {
+			   conn = DBUtil.getConnection();
+			   pstmt = conn.prepareStatement("delete from instructor where instructor_id=?");
+			   pstmt.setInt(1, instructorId);
+			   
+			   int result = pstmt.executeUpdate();
+			   if (result == 1) {
+				   return true;
+			   }
 	      } finally {
-	         DBUtil.close(conn, pstmt);
+	    	  DBUtil.close(conn, pstmt);
 	      }
 	      return false;
 	   }
