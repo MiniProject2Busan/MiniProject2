@@ -18,3 +18,22 @@ DTO(Data Transfer Object) : DB접근을 위한 생성자
 - 활용가능한 방법 : 
 View 기능에 대한 메소드들은 interface를 통해 상속받으면 도움이 됨(중복되는 부분이 많음)
 ex) CRUD View에 대한 것들.
+
+
+Interface의 사용가능영역
+- Controller
+- Service
+- View 
+
+Student, Manager, Instructor의 중복되는 부분이 많이 존재함
+(인터페이스를 통해 구현가능)
+
+메서드 명을 동일하게하면 됨.
+-	객체를 매개변수로 받는 경우 최상위 객체인 Object를 매개변수로 받고 
+	업캐스팅과 다운캐스팅을 통해 원래의 형태로 변환시켜줌
+
+
+
+- 학생 이름으로 학생 정보 찾기
+	- 중복되는 부분(동명이인)에서 찾지 않았는데 ArrayLists로 값을 받아서
+		찾을 수 있긴함. 
