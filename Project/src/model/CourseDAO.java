@@ -142,6 +142,25 @@ public class CourseDAO {
 			}
 			return false;
 		}
+		
+		public static boolean deleteCourse(int courseId) throws SQLException {
+			Connection con = null;
+			PreparedStatement pstmt = null;
+			
+			try {
+				con = DBUtil.getConnection();
+				pstmt = con.prepareStatement("delete from course where course_id=?");
+				pstmt.setInt(1, courseId);
+				int result = pstmt.executeUpdate();
+				
+				if (result == 1) {
+					return true;
+				}
+			} finally {
+				DBUtil.close(con, pstmt);
+			}
+			return false;
+		}
 
 		// 강의 이름으로 강의 정보 검색
 		public static CourseDTO getCourseName(String courseName) throws SQLException {
