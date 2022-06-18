@@ -84,13 +84,13 @@ public class StudentDAO {
 	}
 
 	// 학생 ID로 학생 정보 삭제
-	public static boolean deleteStudent(String managerId) throws SQLException {
+	public static boolean deleteStudent(int studentId) throws SQLException {
 		Connection con = null;
 		PreparedStatement pstmt = null;
 		try {
 			con = DBUtil.getConnection();
 			pstmt = con.prepareStatement("delete from student where student_id=?");
-			pstmt.setString(1, managerId);
+			pstmt.setInt(1, studentId);
 			int result = pstmt.executeUpdate();
 			if (result == 1) {
 				return true;
