@@ -4,7 +4,6 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 
 import dto.InstructorDTO;
-import model.CourseDAO;
 import model.InstructorDAO;
 
 public class InstructorService {

@@ -3,12 +3,8 @@ package service;
 import java.sql.SQLException;
 import java.util.ArrayList;
 
-import dto.InstructorDTO;
 import dto.ManagerDTO;
-import dto.StudentDTO;
-import model.InstructorDAO;
 import model.ManagerDAO;
-import model.StudentDAO;
 
 public class ManagerService {
 	private static ManagerService instance = new ManagerService();
