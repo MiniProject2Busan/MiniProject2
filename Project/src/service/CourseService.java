@@ -78,7 +78,6 @@ public class CourseService {
 	public boolean deleteCourse(String courseName) throws SQLException{
 		return(CourseDAO.deleteCourse(courseName));
 	}
-	
 	// id로 삭제
 	public boolean deleteCourse(int courseId) throws SQLException{
 		boolean check = CourseDAO.deleteCourse(courseId);

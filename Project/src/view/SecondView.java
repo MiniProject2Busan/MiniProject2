@@ -116,6 +116,7 @@ public class SecondView {
 				instructorV.deleteView();
 				break;
 			case 3: // 담당자 정보 삭제
+				managerV.deleteView();
 				break;
 			case 4: // 강의 정보 삭제
 				break;
