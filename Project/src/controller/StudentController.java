@@ -21,7 +21,7 @@ public class StudentController {
 	// 모든 학생 검색
 	public void allStudent() {
 		try {
-			ResultView.projectListView(service.getAllstudent());
+			ResultView.allListView(service.getAllstudent());
 		} catch (SQLException s) {
 			System.out.println(s);
 		}
@@ -47,7 +47,6 @@ public class StudentController {
 			}
 		} catch (SQLException e) {
 			ResultView.Error("수정에 실패했습니다.");
-			System.out.println(e);
 		}
 	}
 
@@ -79,6 +78,8 @@ public class StudentController {
 			ResultView.getsalary(service.getData(service.getOneStudnet(stdName)));
 		} catch (SQLException e) {
 			ResultView.Error("SQL문 에러");
+		} catch(NullPointerException e) {
+			ResultView.Error("존재하지 않는 학생입니다.");
 		}
 	}
 

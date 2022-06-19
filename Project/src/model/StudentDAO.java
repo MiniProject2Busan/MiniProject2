@@ -147,7 +147,7 @@ public class StudentDAO {
 	}
 
 	// 특정 학생에 대한 출결정보 검색
-	public static ArrayList<Integer> getData(StudentDTO oneStudnet) throws SQLException {
+	public static ArrayList<Integer> getData(StudentDTO oneStudnet) throws SQLException, NullPointerException {
 		Connection con = null;
 		PreparedStatement pstmt = null;
 		ResultSet rset = null;

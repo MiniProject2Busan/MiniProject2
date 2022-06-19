@@ -20,9 +20,9 @@ public class ManagerController {
 	// 모든 담당자 검색
 	public void allManager() {
 		try {
-			ResultView.managerView(service.getAllmanager());
-		} catch (SQLException s) {
-			System.out.println(s);
+			ResultView.allListView(service.getAllmanager());
+		} catch (SQLException e) {
+			System.out.println(e); 
 		}
 	}
 

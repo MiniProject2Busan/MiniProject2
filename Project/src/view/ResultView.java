@@ -10,29 +10,39 @@ import dto.StudentDTO;
 public class ResultView {
 
 	//
-	// 모든 강의 정보 출력
-	public static void courseListView(ArrayList<CourseDTO> allCourse) {
-		int length = allCourse.size();
+	
+	public static void allListView(ArrayList<?> allList) {
+		int length = allList.size();
 		if (length != 0) {
 			for (int index = 0; index < length; index++) {
-				System.out.println("검색정보 " + (index + 1) + " - " + allCourse.get(index));
+				System.out.println("검색정보 " + (index + 1) + " - " + allList.get(index)+"\n");
 			}
 		}
 	}
-
-	/**
-	 * Instructor
-	 */
-	// 모든 강사 정보 출력
-	public static void instructorView(ArrayList<InstructorDTO> instructorList) {
-		int length = instructorList.size();
-		if (length != 0) {
-			for (int index = 0; index < length; index++) {
-				System.out.println("검색정보 " + (index + 1) + " - " + instructorList.get(index));
-			}
-		}
-
-	}
+	
+//	// 모든 강의 정보 출력
+//	public static void courseListView(ArrayList<CourseDTO> allCourse) {
+//		int length = allCourse.size();
+//		if (length != 0) {
+//			for (int index = 0; index < length; index++) {
+//				System.out.println("검색정보 " + (index + 1) + " - " + allCourse.get(index));
+//			}
+//		}
+//	}
+//
+//	/**
+//	 * Instructor
+//	 */
+//	// 모든 강사 정보 출력
+//	public static void instructorView(ArrayList<InstructorDTO> instructorList) {
+//		int length = instructorList.size();
+//		if (length != 0) {
+//			for (int index = 0; index < length; index++) {
+//				System.out.println("검색정보 " + (index + 1) + " - " + instructorList.get(index));
+//			}
+//		}
+//
+//	}
 
 	// 특정 강사 정보 출력
 	public static void instructorVeiw(InstructorDTO instructor) {
@@ -58,16 +68,16 @@ public class ResultView {
 	 * Manager
 	 */
 	// 모든 담당자 정보 출력
-	public static void managerView(ArrayList<ManagerDTO> managerList) {
-		int length = managerList.size();
-		if (length != 0) {
-			for (int index = 0; index < length; index++) {
-				System.out.println("검색정보 " + (index + 1) + " - " + managerList.get(index));
-			}
-			System.out.println();
-		}
-
-	}
+//	public static void managerView(ArrayList<ManagerDTO> managerList) {
+//		int length = managerList.size();
+//		if (length != 0) {
+//			for (int index = 0; index < length; index++) {
+//				System.out.println("검색정보 " + (index + 1) + " - " + managerList.get(index));
+//			}
+//			System.out.println();
+//		}
+//
+//	}
 
 	// 특정 담당자 정보 출력
 	public static void managerView(ManagerDTO manager) {
@@ -111,22 +121,21 @@ public class ResultView {
 		System.out.println(msg);
 	}
 
-	public static void projectListView(ArrayList<StudentDTO> allProject) {
-		int length = allProject.size();
-		System.out.println();
-		if (length != 0) {
-			for (int index = 0; index < length; index++) {
-				System.out.println(allProject.get(index) + "\n");
-			}
-		}
-
-	}
+//	public static void projectListView(ArrayList<StudentDTO> allProject) {
+//		int length = allProject.size();
+//		System.out.println();
+//		if (length != 0) {
+//			for (int index = 0; index < length; index++) {
+//				System.out.println(allProject.get(index) + "\n");
+//			}
+//		}
+//
+//	}
 
 	public static void selectView(StudentDTO studentinfo) {
 		if (studentinfo == null) {
 			System.out.println("존재하지 않는 회원입니다.");
 		}
-		System.out.println(studentinfo);
 	}
 
 	public static void getsalary(int data) {

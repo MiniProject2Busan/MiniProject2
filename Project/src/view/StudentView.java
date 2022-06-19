@@ -89,7 +89,6 @@ public class StudentView implements ViewInterface {
 	public void updateSalary() throws NoSuchElementException {
 		Scanner sc = new Scanner(System.in);
 		System.out.println("학생의 이름을 입력해주세요:");
-//		sc.nextLine();
 		String stdName = sc.next();
 		System.out.println("출결정보를 수정합니다.");
 		System.out.println("1.지각정보 업데이트");

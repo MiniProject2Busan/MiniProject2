@@ -22,7 +22,7 @@ public class CourseController {
 	// 모든 강의 검색
 	public void allCourse() {
 		try {
-			ResultView.courseListView(service.getAllCourse());
+			ResultView.allListView(service.getAllCourse());
 			RunningSuccessView.showSuccess("모든 강의 검색 성공!");
 		} catch (SQLException e) {
 			e.printStackTrace();

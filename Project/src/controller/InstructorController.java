@@ -1,12 +1,9 @@
 package controller;
 
 import java.sql.SQLException;
-import java.util.ArrayList;
 import java.util.InputMismatchException;
 
-import dto.CourseDTO;
 import dto.InstructorDTO;
-import service.CourseService;
 import service.InstructorService;
 import view.ResultView;
 
@@ -24,7 +21,7 @@ public class InstructorController {
 	// 모든 강사 검색
 	public void allInstructor() throws InputMismatchException {
 		try {
-			ResultView.instructorView(service.getAllInstructor());
+			ResultView.allListView(service.getAllInstructor());
 		} catch (SQLException e) {
 			ResultView.Error("조회 가능한 데이터가 존재하지 않습니다.");
 			e.printStackTrace();

@@ -67,6 +67,7 @@ public class SecondView {
 				break;
 			case 3: // 매니저 정보 업데이트
 				managerV.updateView();
+				break;
 			case 4:
 				break;
 			case 5: // 출결 업데이트

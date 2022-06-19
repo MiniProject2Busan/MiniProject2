@@ -50,7 +50,7 @@ public class StudentService {
 
 
 	// 특정 학생에 대한 출결정보 출력
-	public int getData(StudentDTO oneStudnet) throws SQLException {
+	public int getData(StudentDTO oneStudnet) throws SQLException, NullPointerException {
 		ArrayList<Integer> attendance = StudentDAO.getData(oneStudnet);
 
 		int tardy = attendance.get(0); // 지각
