@@ -3,7 +3,6 @@ package controller;
 import java.sql.Date;
 import java.sql.SQLException;
 
-import exception.NotExistException;
 import service.CourseService;
 import view.RunningEndView;
 import view.RunningSuccessView;

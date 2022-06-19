@@ -25,7 +25,7 @@ public class InstructorService implements ServiceInteface {
 	}
 	@Override
 	public Object getOne(String instructorName) throws SQLException {
-		return InstructorDAO.getInstructor(instructorName);
+		return InstructorDAO.getInstructorByName(instructorName);
 	}
 	@Override
 	public void insertPeople(Object obj) throws SQLException {
