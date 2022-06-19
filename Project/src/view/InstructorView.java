@@ -40,8 +40,12 @@ public class InstructorView implements ViewInterface {
 
 		if (instructor != null) {
 			String instructorInput = null; // 이름 or 전화번호 수정
-			System.out.println("\n1. 이름");
-			System.out.println("2. 전화번호\n");
+			
+			System.out.println();
+			System.out.println("1. 이름");
+			System.out.println("2. 전화번호");
+			System.out.println();
+			
 			int instructorInner = sc.nextInt();
 			sc.nextLine();
 
@@ -53,6 +57,9 @@ public class InstructorView implements ViewInterface {
 
 			instructorInput = sc.nextLine(); // 이름 or 전화번호
 			instructorCtrl.updateInstructor(instructor, instructorInner, instructorInput);
+		} else {
+			System.out.println("요청하신 데이터가 존재하지 않습니다.");
+			System.out.println();
 		}
 	}
 
@@ -69,6 +76,7 @@ public class InstructorView implements ViewInterface {
 		String instructorPhone = sc.nextLine();
 //		sc.nextLine();
 //		System.out.println(1);
+		System.out.println();
 		instructorCtrl.insertInstructor(new InstructorDTO(defaultInstructorId, instructorName, instructorPhone));
 	}
 
@@ -80,11 +88,13 @@ public class InstructorView implements ViewInterface {
 
 		InstructorDTO instructor = instructorCtrl.checkInstructorId(instructorId);
 		if (instructor != null) {
-			System.out.println(instructor);
+			System.out.println("Deleted! " + instructor);
+			System.out.println();
 
 			instructorCtrl.deleteInstructor(instructorId);
 		} else {
 			System.out.println("일치하는 데이터가 존재하지 않습니다.");
+			System.out.println();
 		}
 //		instructorCtrl.deleteInstructor(instructorId);
 	}

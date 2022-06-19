@@ -7,14 +7,12 @@ import java.util.InputMismatchException;
 import dto.CourseDTO;
 import dto.InstructorDTO;
 import exception.NotExistException;
-import service.CourseService;
 import service.InstructorService;
 import view.RunningEndView;
 
 public class InstructorController {
 	private static InstructorController instance = new InstructorController();
 	private InstructorService service = InstructorService.getInstance();
-	private CourseService courseService = CourseService.getInstance();
 
 	private InstructorController() {
 	}
@@ -28,6 +26,7 @@ public class InstructorController {
 		try {
 			RunningEndView.instructorView(service.getAllInstructor());
 		} catch (SQLException e) {
+			RunningEndView.Error("조회 가능한 데이터가 존재하지 않습니다.");
 			e.printStackTrace();
 		}
 	}
@@ -74,21 +73,8 @@ public class InstructorController {
 	// 강사 정보 삭제
 	public void deleteInstructor(int instuctorId) throws InputMismatchException {
 		try {
-			// 해당 강의 삭제
-			ArrayList<CourseDTO> course = courseService.getAllCourse();
-			// instructorId로 courseName 검색
-			for (int i = 0; i < courseService.getAllCourse().size(); i++) {
-//				System.out.println("in : " + instuctorId);
-				if (instuctorId == course.get(i).getInstructorId()) {
-					courseService.deleteCourse(course.get(i).getCourseId());
-					// 강사 삭제
-				}
-			}
-
 			service.instructorDelete(instuctorId);
 		} catch (SQLException e) {
-			e.printStackTrace();
-		} catch (NotExistException e) {
 			e.printStackTrace();
 		}
 	}

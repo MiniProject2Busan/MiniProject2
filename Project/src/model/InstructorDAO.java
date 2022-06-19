@@ -98,7 +98,6 @@ public class InstructorDAO {
 	
 	   // 강사 ID로 강사 정보 삭제
 	   public static boolean deleteInstructor(int instructorId) throws SQLException {
-		   System.out.println("id: " + instructorId);
 		   Connection conn = null;
 		   PreparedStatement pstmt = null;
 		   
@@ -118,7 +117,7 @@ public class InstructorDAO {
 	   }
 	
 	   // 강사 이름으로 강사 정보 검색
-	   public static InstructorDTO getInstructor(String instructorName) throws SQLException {
+	   public static InstructorDTO getInstructorByName(String instructorName) throws SQLException {
 	      Connection conn = null;
 	      PreparedStatement pstmt = null;
 	      ResultSet rset = null;
@@ -140,7 +139,7 @@ public class InstructorDAO {
 	   }
 	   
 	   // 강사 id로 강사 정보 검색 (update)
-	   public static InstructorDTO getInstructor(int instructorId) throws SQLException {
+	   public static InstructorDTO getInstructorById(int instructorId) throws SQLException {
 	      Connection conn = null;
 	      PreparedStatement pstmt = null;
 	      ResultSet rset = null;
