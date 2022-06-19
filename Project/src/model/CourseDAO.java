@@ -1,11 +1,11 @@
 package model;
 
 import java.sql.Connection;
+import java.sql.Date;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
-import java.util.Date;
 
 import dto.CourseDTO;
 import utils.DBUtil;
@@ -13,7 +13,7 @@ import utils.DBUtil;
 public class CourseDAO {
 
 	// 강의 정보 생성
-	public static boolean addCourse(CourseDTO course, int instructorId) throws SQLException {
+	public static boolean addCourse(CourseDTO course) throws SQLException {
 		Connection conn = null;
 		PreparedStatement pstmt = null;
 
@@ -22,9 +22,9 @@ public class CourseDAO {
 			pstmt = conn.prepareStatement(
 					"insert into course(course_name, start_date, end_date, instructor_instructor_id) values(?, ?, ?, ?)");
 			pstmt.setString(1, course.getCourseName());
-			pstmt.setDate(2, (java.sql.Date) course.getStartDate());
-			pstmt.setDate(3, (java.sql.Date) course.getEndDate());
-			pstmt.setInt(4, instructorId);
+			pstmt.setDate(2, (Date) course.getStartDate());
+			pstmt.setDate(3, (Date) course.getEndDate());
+			pstmt.setInt(4, course.getInstructorId());
 
 			int result = pstmt.executeUpdate();
 			if (result == 1) {
@@ -37,97 +37,68 @@ public class CourseDAO {
 		return false;
 	}
 
-	// 강의 ID로 강의 이름 수정
-	public static boolean updateCourseName(int courseId, String courseName) throws SQLException {
-		Connection con = null;
+	public static boolean updateCourse(int courseId, int selectNum, String modify)
+			throws SQLException, IllegalArgumentException {
+		Connection conn = null;
 		PreparedStatement pstmt = null;
 		try {
-			con = DBUtil.getConnection();
+			conn = DBUtil.getConnection();
 
-			pstmt = con.prepareStatement("update course set course_name=? where course_id=?");
-			pstmt.setString(1, courseName);
-			pstmt.setInt(2, courseId);
+			if (selectNum == 1) {
+				pstmt = conn.prepareStatement("update course set course_name=? where course_id=?");
+				pstmt.setString(1, modify);
+				pstmt.setInt(2, courseId);
 
+			} else if (selectNum == 2) {
+				pstmt = conn.prepareStatement("update course set start_date=? where course_id=?");
+				pstmt.setDate(1, Date.valueOf(modify));
+				pstmt.setInt(2, courseId);
+
+			} else {
+				pstmt = conn.prepareStatement("update course set end_date=? where course_id=?");
+				pstmt.setDate(1, Date.valueOf(modify));
+				pstmt.setInt(2, courseId);
+
+			}
 			int result = pstmt.executeUpdate();
 			if (result == 1) {
 				return true;
 			}
+
 		} finally {
-			DBUtil.close(con, pstmt);
-		}
-		return false;
-	}
-
-	// 강의 ID로 강의 시작일자 수정
-	public static boolean updateCourseStartDate(int courseId, Date startDate) throws SQLException {
-		Connection con = null;
-		PreparedStatement pstmt = null;
-		try {
-			con = DBUtil.getConnection();
-
-			pstmt = con.prepareStatement("update course set start_date=? where course_id=?");
-			pstmt.setDate(1, (java.sql.Date) startDate);
-			pstmt.setInt(2, courseId);
-
-			int result = pstmt.executeUpdate();
-			if (result == 1) {
-				return true;
-			}
-		} finally {
-			DBUtil.close(con, pstmt);
-		}
-		return false;
-	}
-
-	// 강의 ID로 강의 종료일자 수정
-	public static boolean updateCourseEndDate(int courseId, Date endDate) throws SQLException {
-		Connection con = null;
-		PreparedStatement pstmt = null;
-		try {
-			con = DBUtil.getConnection();
-
-			pstmt = con.prepareStatement("update course set end_date=? where course_id=?");
-			pstmt.setDate(1, (java.sql.Date) endDate);
-			pstmt.setInt(2, courseId);
-
-			int result = pstmt.executeUpdate();
-			if (result == 1) {
-				return true;
-			}
-		} finally {
-			DBUtil.close(con, pstmt);
+			DBUtil.close(conn, pstmt);
 		}
 		return false;
 	}
 
 	// 강의 Id로 강의 정보 삭제
 	public static boolean deleteCourse(int courseId) throws SQLException {
-		Connection con = null;
+		Connection conn = null;
 		PreparedStatement pstmt = null;
 		try {
-			con = DBUtil.getConnection();
-			pstmt = con.prepareStatement("delete from course where course_id=?");
+			conn = DBUtil.getConnection();
+			pstmt = conn.prepareStatement("delete from course where course_id=?");
 			pstmt.setInt(1, courseId);
 			int result = pstmt.executeUpdate();
 			if (result == 1) {
 				return true;
 			}
 		} finally {
-			DBUtil.close(con, pstmt);
+			DBUtil.close(conn, pstmt);
 		}
 		return false;
 	}
 
 	// 강의 이름으로 강의 정보 검색
 	public static CourseDTO getCourseName(String courseName) throws SQLException {
-		Connection con = null;
+		Connection conn = null;
 		PreparedStatement pstmt = null;
 		ResultSet rset = null;
 		CourseDTO courseInfo = null;
 
 		try {
-			con = DBUtil.getConnection();
-			pstmt = con.prepareStatement("select * from course where course_name=?");
+			conn = DBUtil.getConnection();
+			pstmt = conn.prepareStatement("select * from course where course_name=?");
 			pstmt.setString(1, courseName);
 			rset = pstmt.executeQuery();
 			if (rset.next()) {
@@ -135,21 +106,21 @@ public class CourseDAO {
 						rset.getInt(5));
 			}
 		} finally {
-			DBUtil.close(con, pstmt, rset);
+			DBUtil.close(conn, pstmt, rset);
 		}
 		return courseInfo;
 	}
 
 	// 강의 이름으로 강의 정보 검색
 	public static CourseDTO getCourseId(int courseId) throws SQLException {
-		Connection con = null;
+		Connection conn = null;
 		PreparedStatement pstmt = null;
 		ResultSet rset = null;
 		CourseDTO courseInfo = null;
 
 		try {
-			con = DBUtil.getConnection();
-			pstmt = con.prepareStatement("select * from course where course_id=?");
+			conn = DBUtil.getConnection();
+			pstmt = conn.prepareStatement("select * from course where course_id=?");
 			pstmt.setInt(1, courseId);
 			rset = pstmt.executeQuery();
 			if (rset.next()) {
@@ -157,20 +128,20 @@ public class CourseDAO {
 						rset.getInt(5));
 			}
 		} finally {
-			DBUtil.close(con, pstmt, rset);
+			DBUtil.close(conn, pstmt, rset);
 		}
 		return courseInfo;
 	}
 
 	// 모든 강의 검색
 	public static ArrayList<CourseDTO> getAllCourse() throws SQLException {
-		Connection con = null;
+		Connection conn = null;
 		PreparedStatement pstmt = null;
 		ResultSet rset = null;
 		ArrayList<CourseDTO> list = null;
 		try {
-			con = DBUtil.getConnection();
-			pstmt = con.prepareStatement("select * from course");
+			conn = DBUtil.getConnection();
+			pstmt = conn.prepareStatement("select * from course");
 			rset = pstmt.executeQuery();
 
 			list = new ArrayList<CourseDTO>();
@@ -179,7 +150,7 @@ public class CourseDAO {
 						rset.getInt(5)));
 			}
 		} finally {
-			DBUtil.close(con, pstmt, rset);
+			DBUtil.close(conn, pstmt, rset);
 		}
 		return list;
 	}

@@ -14,6 +14,7 @@ public class StudentDTO {
 	public StudentDTO() {
 	}
 
+	// 학생 정보 출력
 	public StudentDTO(int id, String name, int age, String phone, String addr, String seatId, int attendance, int absent,
 			int manager_id) {
 		this.id = id;
@@ -24,6 +25,15 @@ public class StudentDTO {
 		this.seatId = seatId;
 		this.attendance = attendance;
 		this.absent = absent;
+		this.manager_id = manager_id;
+	}
+	// 학생추가
+	public StudentDTO(String name, int age, String phone, String addr,String seatId,int manager_id) {
+		this.name = name;
+		this.age = age;
+		this.seatId=seatId;
+		this.phone = phone;
+		this.addr = addr;
 		this.manager_id = manager_id;
 	}
 
@@ -47,12 +57,6 @@ public class StudentDTO {
 		return age;
 	}
 
-	@Override
-	public String toString() {
-		return "StudentDTO [id=" + id + ", name=" + name + ", age=" + age + ", phone=" + phone + ", addr=" + addr
-				+ ", seatId=" + seatId + ", attendance=" + attendance + ", absent=" + absent + ", manager_id="
-				+ manager_id + "]";
-	}
 
 	public void setAge(int age) {
 		this.age = age;
@@ -106,4 +110,10 @@ public class StudentDTO {
 		this.manager_id = manager_id;
 	}
 
+	@Override
+	public String toString() {
+		return "StudentDTO [id=" + id + ", name=" + name + ", age=" + age + ", phone=" + phone + ", addr=" + addr
+				+ ", seatId=" + seatId + ", attendance=" + attendance + ", absent=" + absent + ", manager_id="
+				+ manager_id + "]";
+	}
 }

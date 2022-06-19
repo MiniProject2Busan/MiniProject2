@@ -1,63 +1,77 @@
 package controller;
 
 import java.sql.SQLException;
-import java.util.Scanner;
+import java.util.ArrayList;
+import java.util.InputMismatchException;
 
+import dto.CourseDTO;
 import dto.InstructorDTO;
-import model.InstructorDAO;
+import service.CourseService;
 import service.InstructorService;
-import view.TestInstructorEndView;
+import view.RunningEndView;
 
 public class InstructorController {
 	private static InstructorController instance = new InstructorController();
 	private InstructorService service = InstructorService.getInstance();
-	
-	private InstructorController() {}
-	
+
+	private InstructorController() {
+	}
+
 	public static InstructorController getInstance() {
 		return instance;
 	}
-	
-	// 이름으로 특정 강사 검색
-	public void instructorView(String instructorName) {
+
+	// 모든 강사 검색
+	public void allInstructor() throws InputMismatchException {
 		try {
-			TestInstructorEndView.instructorVeiw(service.getInstructor(instructorName));
+			RunningEndView.instructorView(service.getAllInstructor());
+		} catch (SQLException e) {
+			RunningEndView.Error("조회 가능한 데이터가 존재하지 않습니다.");
+			e.printStackTrace();
+		}
+	}
+
+	// 이름으로 특정 강사 검색
+	public void instructorView(String instructorName) throws InputMismatchException {
+		try {
+			RunningEndView.instructorVeiw(service.getInstructor(instructorName));
 		} catch (SQLException e) {
 			e.printStackTrace();
 		}
 	}
-	
+
 	// update/delete를 위한 id값 체크
-	public InstructorDTO checkInstructorId(int instructorId) {
+	public InstructorDTO checkInstructorId(int instructorId) throws InputMismatchException {
 		try {
 			return service.instructorIdCheck(instructorId);
 		} catch (SQLException e) {
 			e.printStackTrace();
 		}
-		
+
 		return null;
 	}
-	
+
 	// 강사 정보 수정
-	public void updateInstructor(InstructorDTO instructor, int num, String inputValue) {
+	public void updateInstructor(InstructorDTO instructor, int num, String inputValue) throws InputMismatchException {
 		try {
-			service.instructorUpdate(instructor, num, inputValue);
+			RunningEndView.updateView(service.instructorUpdate(instructor, num, inputValue));
 		} catch (SQLException e) {
 			e.printStackTrace();
 		}
 	}
-	
+
 	// 강사 정보 추가
-	public void insertInstructor(InstructorDTO instructor) {
+	public void insertInstructor(InstructorDTO instructor) throws InputMismatchException {
 		try {
+//			System.out.println("instructor : " + instructor);
 			service.instructorInsert(instructor);
 		} catch (SQLException e) {
 			e.printStackTrace();
 		}
 	}
-	
+
 	// 강사 정보 삭제
-	public void deleteInstructor(int instuctorId) {
+	public void deleteInstructor(int instuctorId) throws InputMismatchException {
 		try {
 			service.instructorDelete(instuctorId);
 		} catch (SQLException e) {

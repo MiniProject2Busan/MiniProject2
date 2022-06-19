@@ -1,6 +1,6 @@
 package dto;
 
-import java.util.Date;
+import java.sql.Date;
 
 public class CourseDTO {
 	private int courseId;
@@ -11,15 +11,16 @@ public class CourseDTO {
 
 	public CourseDTO() {
 	}
-	
+
 	// 강의 정보 입력
-	public CourseDTO(String courseName, Date startDate, Date endDate) {
+	public CourseDTO(String courseName, Date startDate, Date endDate, int instructorId) {
 		super();
 		this.courseName = courseName;
 		this.startDate = startDate;
 		this.endDate = endDate;
+		this.instructorId = instructorId;
 	}
-	
+
 	// 강의 정보 출력
 	public CourseDTO(int courseId, String courseName, Date startDate, Date endDate, int instructorId) {
 		super();
@@ -72,10 +73,8 @@ public class CourseDTO {
 
 	@Override
 	public String toString() {
-		return "강의 정보 [강의Id : " + courseId + ", 강의명 : " + courseName + ", 강의 시작 일자 : " + startDate
-				+ ", 강의 종료 일자 : " + endDate + ", 강사Id : " + instructorId + "]";
+		return "강의 정보 [강의Id : " + courseId + ", 강의명 : " + courseName + ", 강의 시작 일자 : " + startDate + ", 강의 종료 일자 : "
+				+ endDate + ", 강사Id : " + instructorId + "]";
 	}
-	
-	
 
 }

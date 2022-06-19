@@ -4,7 +4,6 @@ import java.sql.Date;
 import java.sql.SQLException;
 
 import dto.CourseDTO;
-import exception.NotExistException;
 import service.CourseService;
 import view.RunningEndView;
 import view.RunningSuccessView;
@@ -21,11 +20,29 @@ public class CourseController {
 		return instance;
 	}
 
-	// 모등 강의 검색
+	public void addCourse(String courseName, String startDate, String endDate, int instructorId) {
+		try {
+			CourseDTO course = new CourseDTO(courseName, Date.valueOf(startDate), Date.valueOf(endDate), instructorId);
+			service.addCourse(course);
+		} catch (SQLException e) {
+			int error = e.getErrorCode();
+
+			if (error == 1406) {
+				RunningEndView.Error("강의명은 최대 10글자 입니다.");
+			} else if (error == 1452) {
+				RunningEndView.Error("해당하는 강사가 없습니다.");
+			} else {
+				RunningEndView.Error("강의 정보 추가가 실패하였습니다.");
+			}
+		} catch (IllegalArgumentException e) {
+			RunningEndView.Error("형식이 맞지 않습니다.");
+		}
+	}
+
+	// 모든 강의 검색
 	public void allCourse() {
 		try {
 			RunningEndView.courseListView(service.getAllCourse());
-			RunningSuccessView.showSuccess("모든 강의 검색 성공!");
 		} catch (SQLException e) {
 			e.printStackTrace();
 			RunningEndView.Error("모든 강의 검색시 ERROR");
@@ -33,71 +50,42 @@ public class CourseController {
 	}
 
 	// 특정 강의 검색
-	public void Course(String courseName) {
+	public void selectCourse(String courseName) {
 		try {
 			RunningEndView.courseView(service.getCourse(courseName));
-			RunningSuccessView.showSuccess("입력한 강의 검색 성공!");
 		} catch (SQLException e) {
 			e.printStackTrace();
-		} catch (NotExistException e) {
-			RunningEndView.Error("존재하지 않는 강의입니다.");
 		}
 	}
 
-	public boolean selectCourse(int courseId) {
+	// id checker
+	public CourseDTO checkCourseId(int courseId) {
 		try {
-			RunningEndView.courseView(service.getCourseCheckId(courseId));
-			return true;
+			return service.checkCourseId(courseId);
 		} catch (SQLException e) {
 			e.printStackTrace();
-		} catch (NotExistException e) {
-			RunningEndView.Error("없는 강사 id 입니다.");
 		}
-		return false;
+		return null;
 	}
 
-	public void addCourse(CourseDTO course, int instructorId) {
+	public void updateCourse(int courseId, int selectNum, String modify) {
 		try {
-			service.addCourse(course, instructorId);
+			if (service.updateCourse(courseId, selectNum, modify)) {
+				RunningSuccessView.showSuccess("수정이 완료되었습니다.");
+			} else {
+				RunningEndView.Error("존재하지 않는 강의입니다.");
+			}
 		} catch (SQLException e) {
-			RunningEndView.Error("없는 강사 id 입니다.");
+			int error = e.getErrorCode();
+
+			if (error == 1406) {
+				RunningEndView.Error("강의명은 최대 10글자 입니다.");
+			} else {
+				RunningEndView.Error("강의 정보 수정이 실패하였습니다.");
+			}
+		} catch (IllegalArgumentException e) {
+			RunningEndView.Error("형식이 맞지 않습니다.");
 		}
-	}
-
-	// 강의 이름 업데이트
-	public void updateCourseName(int courseId, String courseName) {
-		try {
-			RunningEndView.updateCourseNameView(service.updateCourseName(courseId, courseName));
-		} catch (SQLException e) {
-			e.printStackTrace();
-		} catch (NotExistException e) {
-			RunningEndView.Error("존재하지 않는 강의입니다.");
-		}
-
-	}
-
-	// 강의 시작 일자 업데이트
-	public void updateCourseStartDate(int courseId, String startDate) {
-		try {
-			RunningEndView.updateCourseStartDateView(service.updateCourseStartDate(courseId, Date.valueOf(startDate)));
-		} catch (SQLException e) {
-			e.printStackTrace();
-		} catch (NotExistException e) {
-			RunningEndView.Error("존재하지 않는 강의입니다.");
-		}
-
-	}
-
-	// 강의 종료 일자 업데이트
-	public void updateCourseEndDate(int courseId, String endDate) {
-		try {
-			RunningEndView.updateCourseEndDateView(service.updateCourseEndDate(courseId, Date.valueOf(endDate)));
-		} catch (SQLException e) {
-			e.printStackTrace();
-		} catch (NotExistException e) {
-			RunningEndView.Error("존재하지 않는 강의입니다.");
-		}
-
 	}
 
 	// 강의 삭제
@@ -109,10 +97,7 @@ public class CourseController {
 				RunningEndView.Error("존재하지 않는 강의입니다.");
 			}
 		} catch (SQLException e) {
-			e.printStackTrace();
-		} catch (NotExistException e) {
-			// 이렇게 비워도되나?
-			RunningEndView.Error("존재하지 않는 강의입니다.");
+			RunningEndView.Error("삭제에 실패했습니다.");
 		}
 	}
 

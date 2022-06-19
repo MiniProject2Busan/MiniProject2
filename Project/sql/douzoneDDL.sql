@@ -37,13 +37,13 @@ CREATE TABLE IF NOT EXISTS `douzone`.`student` (
   `student_seatId` VARCHAR(10) NOT NULL,
   `student_attendance` INT NOT NULL DEFAULT 0,
   `student_absent` INT NOT NULL DEFAULT 0,
-  `manager_manager_id` INT NOT NULL DEFAULT 1,
+  `manager_manager_id` INT NULL DEFAULT 1,
   PRIMARY KEY (`student_id`),
   INDEX `fk_student_manager1_idx` (`manager_manager_id` ASC) VISIBLE,
   CONSTRAINT `fk_student_manager1`
     FOREIGN KEY (`manager_manager_id`)
     REFERENCES `douzone`.`manager` (`manager_id`)
-    ON DELETE NO ACTION
+    ON DELETE SET NULL
     ON UPDATE NO ACTION)
 ENGINE = InnoDB;
 
@@ -73,7 +73,7 @@ CREATE TABLE IF NOT EXISTS `douzone`.`course` (
   CONSTRAINT `fk_course_instructor1`
     FOREIGN KEY (`instructor_instructor_id`)
     REFERENCES `douzone`.`instructor` (`instructor_id`)
-    ON DELETE NO ACTION
+    ON DELETE SET NULL
     ON UPDATE NO ACTION)
 ENGINE = InnoDB;
 
