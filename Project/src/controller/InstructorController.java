@@ -8,7 +8,7 @@ import dto.CourseDTO;
 import dto.InstructorDTO;
 import service.CourseService;
 import service.InstructorService;
-import view.RunningEndView;
+import view.ResultView;
 
 public class InstructorController {
 	private static InstructorController instance = new InstructorController();
@@ -24,9 +24,9 @@ public class InstructorController {
 	// 모든 강사 검색
 	public void allInstructor() throws InputMismatchException {
 		try {
-			RunningEndView.instructorView(service.getAllInstructor());
+			ResultView.instructorView(service.getAllInstructor());
 		} catch (SQLException e) {
-			RunningEndView.Error("조회 가능한 데이터가 존재하지 않습니다.");
+			ResultView.Error("조회 가능한 데이터가 존재하지 않습니다.");
 			e.printStackTrace();
 		}
 	}
@@ -34,7 +34,7 @@ public class InstructorController {
 	// 이름으로 특정 강사 검색
 	public void instructorView(String instructorName) throws InputMismatchException {
 		try {
-			RunningEndView.instructorVeiw(service.getInstructor(instructorName));
+			ResultView.instructorVeiw(service.getInstructor(instructorName));
 		} catch (SQLException e) {
 			e.printStackTrace();
 		}
@@ -54,7 +54,7 @@ public class InstructorController {
 	// 강사 정보 수정
 	public void updateInstructor(InstructorDTO instructor, int num, String inputValue) throws InputMismatchException {
 		try {
-			RunningEndView.updateView(service.instructorUpdate(instructor, num, inputValue));
+			ResultView.updateView(service.instructorUpdate(instructor, num, inputValue));
 		} catch (SQLException e) {
 			e.printStackTrace();
 		}

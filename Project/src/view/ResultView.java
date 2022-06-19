@@ -7,7 +7,7 @@ import dto.StudentDTO;
 import dto.InstructorDTO;
 import dto.ManagerDTO;
 
-public class RunningEndView {
+public class ResultView {
 	// 모든 강의 정보 출력
 	public static void courseListView(ArrayList<CourseDTO> allCourse) {
 		int length = allCourse.size();

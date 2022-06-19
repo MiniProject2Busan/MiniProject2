@@ -31,7 +31,6 @@ public class StudentView implements ViewInterface {
 			int age = sc.nextInt();
 			System.out.println("학생의 전화번호를 입력하세요:");
 			String phone = sc.next();
-			sc.nextLine();
 			System.out.println("학생의 주소를 입력하세요:");
 			String addr = sc.next();
 			System.out.println("학생의 좌석이름 입력하세요:");
