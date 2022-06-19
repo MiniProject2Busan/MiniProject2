@@ -37,3 +37,9 @@ Student, Manager, Instructor의 중복되는 부분이 많이 존재함
 - 학생 이름으로 학생 정보 찾기
 	- 중복되는 부분(동명이인)에서 찾지 않았는데 ArrayLists로 값을 받아서
 		찾을 수 있긴함. 
+		
+	
+13:20분 진행상황
+_SeongJun
+- Refactoring:  ServiceInterface 구현완료 / Controller와 연결해야함
+
