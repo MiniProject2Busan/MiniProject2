@@ -4,7 +4,7 @@ import java.sql.SQLException;
 
 import dto.StudentDTO;
 import service.StudentService;
-import view.RunningEndView;
+import view.ResultView;
 import view.RunningSuccessView;
 
 public class StudentController {
@@ -21,7 +21,7 @@ public class StudentController {
 	// 모든 학생 검색
 	public void allStudent() {
 		try {
-			RunningEndView.projectListView(service.getAllstudent());
+			ResultView.projectListView(service.getAllstudent());
 		} catch (SQLException s) {
 			System.out.println(s);
 		}
@@ -30,7 +30,7 @@ public class StudentController {
 	// 특정 학생 이름 검색
 	public void selectStudent(String name) {
 		try {
-			RunningEndView.selectView(service.getOneStudnet(name));
+			ResultView.selectView(service.getOneStudnet(name));
 		} catch (SQLException e) {
 			System.out.println("검색한 학생 정보가 없습니다.");
 		}
@@ -43,10 +43,10 @@ public class StudentController {
 			if (service.updateStudent(id, selectNum, modify)) {
 				RunningSuccessView.showSuccess("수정이 완료되었습니다.");
 			} else {
-				RunningEndView.Error("존재하지 않는 회원입니다.");
+				ResultView.Error("존재하지 않는 회원입니다.");
 			}
 		} catch (SQLException e) {
-			RunningEndView.Error("수정에 실패했습니다.");
+			ResultView.Error("수정에 실패했습니다.");
 			System.out.println(e);
 		}
 	}
@@ -57,7 +57,7 @@ public class StudentController {
 //			service.insertStudent(student);
 			service.insertPeople(student);
 		} catch (SQLException e) {
-			RunningEndView.Error("학생 정보 추가가 실패하였습니다.");
+			ResultView.Error("학생 정보 추가가 실패하였습니다.");
 		}
 	}
 
@@ -67,9 +67,9 @@ public class StudentController {
 			if (service.deleteStudent(studentId)) {
 				RunningSuccessView.showSuccess("삭제완료");
 			} else {
-				RunningEndView.Error("존재하지 않는 회원입니다.");
+				ResultView.Error("존재하지 않는 회원입니다.");
 			}
-		} catch (Exception e) {
+		} catch (SQLException e) {
 			System.out.println("삭제에 실패했습니다.");
 		}
 	}
@@ -77,9 +77,9 @@ public class StudentController {
 	// 급여 정보 검색
 	public void salaryCal(String stdName) {
 		try {
-			RunningEndView.getsalary(service.getData(service.getOneStudnet(stdName)));
+			ResultView.getsalary(service.getData(service.getOneStudnet(stdName)));
 		} catch (SQLException e) {
-			RunningEndView.Error("SQL문 에러");
+			ResultView.Error("SQL문 에러");
 		}
 	}
 
@@ -89,7 +89,7 @@ public class StudentController {
 		try {
 			getStudent = service.getOneStudnet(stdName);
 			if (getStudent.equals(null)) { // 검색정보 없다면
-				RunningEndView.Error("검색하신 학생 정보가 존재하지 않습니다.");
+				ResultView.Error("검색하신 학생 정보가 존재하지 않습니다.");
 			} else { // 검색정보가 존재한다면
 				if (attendance == 1 | attendance == 2) { // 1이나 2라면
 					if (attendance == 1) {
@@ -98,11 +98,11 @@ public class StudentController {
 						RunningSuccessView.showSuccess("결석정보 수정이 완료되었습니다.");
 					}
 				} else { // 1이나 2가 아니라면
-					RunningEndView.Error("입력값이 잘못되었습니다.");
+					ResultView.Error("입력값이 잘못되었습니다.");
 				}
 			}
 		} catch (SQLException e) {
-			RunningEndView.Error(e.getMessage());
+			ResultView.Error(e.getMessage());
 		}
 	}
 }
