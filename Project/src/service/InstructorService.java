@@ -24,7 +24,7 @@ public class InstructorService {
 	
 	// Instructor 이름으로 검색
 	public InstructorDTO getInstructor(String instructorName) throws SQLException {
-		return InstructorDAO.getInstructor(instructorName);
+		return InstructorDAO.getInstructorByName(instructorName);
 	}
 	
 	// 기존 Instructor 수정
@@ -34,7 +34,7 @@ public class InstructorService {
 	
 	// 디비에 수정할 데이터 있는지 확인
 	public InstructorDTO instructorIdCheck(int instructorId) throws SQLException {
-		return InstructorDAO.getInstructor(instructorId);
+		return InstructorDAO.getInstructorById(instructorId);
 	}
 	
 	// 이름 or 연락처 수정

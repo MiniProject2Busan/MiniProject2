@@ -36,17 +36,17 @@ public class RunningEndView {
 		if(instructor != null) {
 			System.out.println(instructor);
 		} else {
-			System.out.println("해당하는 데이터가 존재하지 않습니다!");
+			System.out.println("해당하는 데이터가 존재하지 않습니다.");
 		}
 	}
 	
 	// 특정 강사 정보 수정
 	public static void updateView(boolean check) {
 		if(check) {
-			System.out.println("해당하는 데이터가 수정 되었습니다!");
+			System.out.println("해당하는 데이터가 수정 되었습니다.");
 			System.out.println();
 		} else {
-			System.out.println("해당하는 데이터가 수정되지 않았습니다!");
+			System.out.println("해당하는 데이터가 수정되지 않았습니다.");
 			System.out.println();
 		}
 	}
@@ -61,6 +61,7 @@ public class RunningEndView {
 			for (int index = 0; index < length; index++) {
 				System.out.println("검색정보 " + (index + 1) + " - " + managerList.get(index));
 			}
+			System.out.println();
 		}
 
 	}
@@ -70,7 +71,7 @@ public class RunningEndView {
 		if(manager != null) {
 			System.out.println(manager);
 		} else {
-			System.out.println("해당하는 데이터가 존재하지 않습니다!");
+			System.out.println("해당하는 데이터가 존재하지 않습니다.");
 		}
 	}
 	
