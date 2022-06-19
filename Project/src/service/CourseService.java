@@ -89,15 +89,5 @@ public class CourseService {
 			return check;
 		}return false;
 	}
-	
-	// id로 삭제
-	public boolean deleteCourse(int courseId) throws SQLException, NotExistException {
-		boolean check = CourseDAO.deleteCourse(courseId);
-		if (check == false) {
-//			notExistCourseName();
-		}else {
-			return check;
-		}return false;
-	}
 
 }
