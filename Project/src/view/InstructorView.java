@@ -54,7 +54,7 @@ public class InstructorView implements ViewInterface {
 			} else if (instructorInner == 2) {
 				System.out.println("전화번호를 입력해주세요:");
 			}
-			//
+			
 
 			instructorInput = sc.nextLine(); // 이름 or 전화번호
 			instructorCtrl.updateInstructor(instructor, instructorInner, instructorInput);
