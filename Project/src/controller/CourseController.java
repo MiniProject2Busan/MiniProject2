@@ -3,6 +3,7 @@ package controller;
 import java.sql.Date;
 import java.sql.SQLException;
 
+import dto.CourseDTO;
 import service.CourseService;
 import view.ResultView;
 import view.RunningSuccessView;
@@ -19,11 +20,29 @@ public class CourseController {
 		return instance;
 	}
 
+	public void addCourse(String courseName, String startDate, String endDate, int instructorId) {
+		try {
+			CourseDTO course = new CourseDTO(courseName, Date.valueOf(startDate), Date.valueOf(endDate), instructorId);
+			service.addCourse(course);
+		} catch (SQLException e) {
+			int error = e.getErrorCode();
+
+			if (error == 1406) {
+				RunningEndView.Error("강의명은 최대 10글자 입니다.");
+			} else if (error == 1452) {
+				RunningEndView.Error("해당하는 강사가 없습니다.");
+			} else {
+				RunningEndView.Error("강의 정보 추가가 실패하였습니다.");
+			}
+		} catch (IllegalArgumentException e) {
+			RunningEndView.Error("형식이 맞지 않습니다.");
+		}
+	}
+
 	// 모든 강의 검색
 	public void allCourse() {
 		try {
 			ResultView.allListView(service.getAllCourse());
-			RunningSuccessView.showSuccess("모든 강의 검색 성공!");
 		} catch (SQLException e) {
 			e.printStackTrace();
 			ResultView.Error("모든 강의 검색시 ERROR");
@@ -31,52 +50,55 @@ public class CourseController {
 	}
 
 	// 특정 강의 검색
-	public void Course(String courseName) {
+	public void selectCourse(String courseName) {
 		try {
 			ResultView.courseView(service.getCourse(courseName));
-			RunningSuccessView.showSuccess("입력한 강의 검색 성공!");
 		} catch (SQLException e) {
 			e.printStackTrace();
 		}
 	}
 
-	// 강의 이름 업데이트
-	public void updateCourseName(int courseId, String courseName) {
+	// id checker
+	public CourseDTO checkCourseId(int courseId) {
 		try {
-			ResultView.updateCourseNameView(service.updateCourseName(courseId, courseName));
+			return service.checkCourseId(courseId);
 		} catch (SQLException e) {
 			e.printStackTrace();
 		}
-
+		return null;
 	}
 
-	// 강의 시작 일자 업데이트
-	public void updateCourseStartDate(int courseId, Date startDate) {
+	public void updateCourse(int courseId, int selectNum, String modify) {
 		try {
-			ResultView.updateCourseStartDateView(service.updateCourseStartDate(courseId, startDate));
+
+			if (service.updateCourse(courseId, selectNum, modify)) {
+				RunningSuccessView.showSuccess("수정이 완료되었습니다.");
+			} else {
+				RunningEndView.Error("존재하지 않는 강의입니다.");
+			}
 		} catch (SQLException e) {
-			e.printStackTrace();
+			int error = e.getErrorCode();
+
+			if (error == 1406) {
+				RunningEndView.Error("강의명은 최대 10글자 입니다.");
+			} else {
+				RunningEndView.Error("강의 정보 수정이 실패하였습니다.");
+			}
+		} catch (IllegalArgumentException e) {
+			RunningEndView.Error("형식이 맞지 않습니다.");
 		}
-
-	}
-
-	// 강의 종료 일자 업데이트
-	public void updateCourseEndDate(int courseId, Date endDate) {
-		try {
-			ResultView.updateCourseEndDateView(service.updateCourseEndDate(courseId, endDate));
-		} catch (SQLException e) {
-			e.printStackTrace();
-		}
-
 	}
 
 	// 강의 삭제
-	public void deleteCourse(String courseName) {
+	public void deleteCourse(int courseId) {
 		try {
-			service.deleteCourse(courseName);
-			RunningSuccessView.showSuccess("입력한 강의 삭제 성공!");
+			if (service.deleteCourse(courseId)) {
+				RunningSuccessView.showSuccess("입력한 강의 삭제 성공!");
+			} else {
+				RunningEndView.Error("존재하지 않는 강의입니다.");
+			}
 		} catch (SQLException e) {
-			e.printStackTrace();
+			RunningEndView.Error("삭제에 실패했습니다.");
 		}
 	}
 

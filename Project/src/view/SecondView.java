@@ -9,6 +9,7 @@ public class SecondView {
 		StudentView studentV = StudentView.getInstance();
 		InstructorView instructorV = InstructorView.getInstance();
 		ManagerView managerV = ManagerView.getInstance();
+		CourseView courseV = CourseView.getInstance();
 		switch (startNum) {
 		case 1: // 모든 정보 출력
 			System.out.println("1.학생의 모든 정보 출력");
@@ -26,6 +27,8 @@ public class SecondView {
 			case 3:
 				managerV.allPeople();
 				break;
+			case 4:
+				courseV.allCourse();
 			}
 			break;
 
@@ -47,10 +50,15 @@ public class SecondView {
 			case 3:
 				managerV.selectView();
 				break;
+			case 4:
+				courseV.selectView();
+				break;
+
 			default:
 				System.out.println("입력값이 잘못되었습니다.\n");
 			}
 			break;
+
 		case 3: // 특정 정보 업데이트
 			System.out.println("1.학생 정보 업데이트");
 			System.out.println("2.강사 정보 업데이트");
@@ -68,7 +76,9 @@ public class SecondView {
 			case 3: // 매니저 정보 업데이트
 				managerV.updateView();
 				break;
-			case 4:
+
+			case 4: // 강의 정보 업데이트
+				courseV.updateView();
 				break;
 			case 5: // 출결 업데이트
 				studentV.updateSalary();
@@ -77,9 +87,11 @@ public class SecondView {
 				System.out.println("입력값이 잘못되었습니다.");
 			}
 			break;
+
 		case 4: // 급여정보
 			studentV.searchSalary();
 			break;
+
 		case 5: // 정보 추가
 			System.out.println("1.학생 정보 추가");
 			System.out.println("2.강사 정보 추가");
@@ -97,6 +109,7 @@ public class SecondView {
 				managerV.insertView();
 				break;
 			case 4: // 강의 정보 추가
+				courseV.insertView();
 				break;
 			default:
 				System.out.println("입력값이 잘못되었습니다.");
@@ -120,6 +133,8 @@ public class SecondView {
 				managerV.deleteView();
 				break;
 			case 4: // 강의 정보 삭제
+				sc.reset();
+				courseV.deleteView();
 				break;
 			default:
 				System.out.println("입력값이 잘못되었습니다.");

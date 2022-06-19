@@ -39,7 +39,7 @@ public class StudentView implements ViewInterface {
 			int manager = sc.nextInt();
 			StudentDTO student = new StudentDTO(name, age, phone, addr, seatId, manager);
 			studentctrl.insertStudent(student);
-	}
+
 
 	// 학생 삭제 뷰
 	public void deleteView() throws NoSuchElementException {
