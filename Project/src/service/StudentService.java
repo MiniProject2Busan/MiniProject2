@@ -34,10 +34,9 @@ public class StudentService implements ServiceInteface{
 	}
 	//Delete
 	@Override
-	public void deletePeople(int stdId) throws SQLException{
-		StudentDAO.deleteStudent(stdId);
+	public boolean deletePeople(int stdId) throws SQLException{
+		return StudentDAO.deleteStudent(stdId);
 	}
-//	public void 
 //	--------------------------------------------------------------
 	// 학생의 모든 정보 출력
 	public ArrayList<StudentDTO> getAllstudent() throws SQLException {

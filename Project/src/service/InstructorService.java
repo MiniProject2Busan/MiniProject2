@@ -6,8 +6,7 @@ import java.util.ArrayList;
 import dto.InstructorDTO;
 import model.InstructorDAO;
 
-public class InstructorService {
-	
+public class InstructorService implements ServiceInteface {
 	private static InstructorService instance = new InstructorService();
 	
 	private InstructorService() {}
@@ -15,6 +14,26 @@ public class InstructorService {
 	public static InstructorService getInstance() {
 		return instance;
 	}
+	// ---interface test start ------------------------------
+	@Override
+	public ArrayList<InstructorDTO> getAll() throws SQLException{
+		return InstructorDAO.getAllInstructor();
+	}
+	@Override
+	public boolean deletePeople(int instructorId) throws SQLException {
+		return InstructorDAO.deleteInstructor(instructorId);
+	}
+	@Override
+	public Object getOne(String instructorName) throws SQLException {
+		return InstructorDAO.getInstructor(instructorName);
+	}
+	@Override
+	public void insertPeople(Object obj) throws SQLException {
+		InstructorDTO instructor=(InstructorDTO) obj;
+		InstructorDAO.addInstructor(instructor);		
+	}
+	
+	// ---interface test start ------------------------------	
 	
 	// 강사의 모든 정보 출력
 	public ArrayList<InstructorDTO> getAllInstructor() throws SQLException {
