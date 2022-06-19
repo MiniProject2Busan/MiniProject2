@@ -6,7 +6,7 @@ import java.util.ArrayList;
 import dto.ManagerDTO;
 import model.ManagerDAO;
 
-public class ManagerService implements ServiceInteface{
+public class ManagerService{
 	private static ManagerService instance = new ManagerService();
 	
 	private ManagerService() {}
@@ -14,26 +14,6 @@ public class ManagerService implements ServiceInteface{
 	public static ManagerService getInstance() {
 		return instance;
 	}
-
-//	----interface test start-------------------------------------
-	@Override
-	public ArrayList<ManagerDTO> getAll() throws SQLException {
-		return ManagerDAO.getAllManager();
-	}
-	@Override
-	public Object getOne(String managerName) throws SQLException {
-		return ManagerDAO.getManager(managerName);
-	}
-	@Override
-	public void insertPeople(Object obj) throws SQLException {
-		ManagerDTO manager = (ManagerDTO) obj;
-		ManagerDAO.addManager(manager);
-	}
-	@Override
-	public boolean deletePeople(int managerId) throws SQLException {
-		return ManagerDAO.deleteManager(managerId);
-	}
-//	--------------------------------------------------------------
 
 	// manager 모든 정보 출력
 	public ArrayList<ManagerDTO> getAllmanager() throws SQLException {

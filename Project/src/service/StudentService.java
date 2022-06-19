@@ -7,7 +7,7 @@ import dto.StudentDTO;
 import model.StudentDAO;
 
 //학생 정보에 대한 CRUD	
-public class StudentService implements ServiceInteface{
+public class StudentService {
 	private static StudentService instance = new StudentService();
 	private StudentService() {
 	}
@@ -15,30 +15,18 @@ public class StudentService implements ServiceInteface{
 	public static StudentService getInstance() {
 		return instance;
 	}
-//	----interface test start-------------------------------------
-	// Create
-	@Override
-	public void insertPeople(Object Obj) throws SQLException{
-		StudentDTO student = (StudentDTO) Obj;
-		StudentDAO.addStudent(student);
+	// 특정 학생 정보 수정
+	public boolean updateStudent(int id, int selectNum, String modify) throws SQLException {
+		return (StudentDAO.updateStudent(id, selectNum, modify));
 	}
-	// Read
-	@Override
-	public ArrayList<StudentDTO> getAll() throws SQLException{
-		return StudentDAO.getAllStudent();
+	// 지각정보 수정
+	public void updateAttendance(int id, int attendance) throws SQLException {
+		StudentDAO.updateAttendance(id, attendance);
+		
 	}
-	@Override
-	//Read
-	public Object getOne(String name) throws SQLException{
-		return StudentDAO.getStudent(name);
-	}
-	//Delete
-	@Override
-	public boolean deletePeople(int stdId) throws SQLException{
-		return StudentDAO.deleteStudent(stdId);
-	}
-//	--------------------------------------------------------------
-	// 학생의 모든 정보 출력
+	
+	
+//	 학생의 모든 정보 출력
 	public ArrayList<StudentDTO> getAllstudent() throws SQLException {
 		return StudentDAO.getAllStudent();
 	}
@@ -49,11 +37,7 @@ public class StudentService implements ServiceInteface{
 
 	}
 
-	// 특정 학생 정보 수정
-	public boolean updateStudent(int id, int selectNum, String modify) throws SQLException {
-		return (StudentDAO.updateStudent(id, selectNum, modify));
-	}
-
+	
 	// 특정 학생 정보 추가
 	public void insertStudent(StudentDTO student) throws SQLException {
 		StudentDAO.addStudent(student);
@@ -64,10 +48,6 @@ public class StudentService implements ServiceInteface{
 
 	}
 
-	public void updateAttendance(int id, int attendance) throws SQLException {
-		StudentDAO.updateAttendance(id, attendance);
-
-	}
 
 	// 특정 학생에 대한 출결정보 출력
 	public int getData(StudentDTO oneStudnet) throws SQLException {
@@ -78,6 +58,7 @@ public class StudentService implements ServiceInteface{
 		return (salary(tardy, absent));
 	}
 
+	// 지급금액 계산메서드
 	public int salary(int tar, int absent) {
 		int sal = 300000;
 		sal = sal - ((tar % 3 + absent) * 15000);
