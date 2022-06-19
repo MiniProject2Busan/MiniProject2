@@ -6,8 +6,6 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
 
-import com.mysql.cj.xdevapi.Statement;
-
 import dto.InstructorDTO;
 import utils.DBUtil;
 

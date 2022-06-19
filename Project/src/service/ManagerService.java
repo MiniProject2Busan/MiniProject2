@@ -3,14 +3,10 @@ package service;
 import java.sql.SQLException;
 import java.util.ArrayList;
 
-import dto.InstructorDTO;
 import dto.ManagerDTO;
-import dto.StudentDTO;
-import model.InstructorDAO;
 import model.ManagerDAO;
-import model.StudentDAO;
 
-public class ManagerService {
+public class ManagerService implements ServiceInteface{
 	private static ManagerService instance = new ManagerService();
 	
 	private ManagerService() {}
@@ -18,7 +14,27 @@ public class ManagerService {
 	public static ManagerService getInstance() {
 		return instance;
 	}
-	
+
+//	----interface test start-------------------------------------
+	@Override
+	public ArrayList<ManagerDTO> getAll() throws SQLException {
+		return ManagerDAO.getAllManager();
+	}
+	@Override
+	public Object getOne(String managerName) throws SQLException {
+		return ManagerDAO.getManager(managerName);
+	}
+	@Override
+	public void insertPeople(Object obj) throws SQLException {
+		ManagerDTO manager = (ManagerDTO) obj;
+		ManagerDAO.addManager(manager);
+	}
+	@Override
+	public boolean deletePeople(int managerId) throws SQLException {
+		return ManagerDAO.deleteManager(managerId);
+	}
+//	--------------------------------------------------------------
+
 	// manager 모든 정보 출력
 	public ArrayList<ManagerDTO> getAllmanager() throws SQLException {
 		return ManagerDAO.getAllManager(); // Arraylist

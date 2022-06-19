@@ -7,16 +7,37 @@ import dto.StudentDTO;
 import model.StudentDAO;
 
 //학생 정보에 대한 CRUD	
-public class StudentService {
+public class StudentService implements ServiceInteface{
 	private static StudentService instance = new StudentService();
-
 	private StudentService() {
 	}
 
 	public static StudentService getInstance() {
 		return instance;
 	}
-
+//	----interface test start-------------------------------------
+	// Create
+	@Override
+	public void insertPeople(Object Obj) throws SQLException{
+		StudentDTO student = (StudentDTO) Obj;
+		StudentDAO.addStudent(student);
+	}
+	// Read
+	@Override
+	public ArrayList<StudentDTO> getAll() throws SQLException{
+		return StudentDAO.getAllStudent();
+	}
+	@Override
+	//Read
+	public Object getOne(String name) throws SQLException{
+		return StudentDAO.getStudent(name);
+	}
+	//Delete
+	@Override
+	public boolean deletePeople(int stdId) throws SQLException{
+		return StudentDAO.deleteStudent(stdId);
+	}
+//	--------------------------------------------------------------
 	// 학생의 모든 정보 출력
 	public ArrayList<StudentDTO> getAllstudent() throws SQLException {
 		return StudentDAO.getAllStudent();

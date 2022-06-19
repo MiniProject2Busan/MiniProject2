@@ -38,8 +38,6 @@ public class CourseController {
 			RunningSuccessView.showSuccess("입력한 강의 검색 성공!");
 		} catch (SQLException e) {
 			e.printStackTrace();
-		} catch (NotExistException e) {
-			e.printStackTrace();
 		}
 	}
 
@@ -48,8 +46,6 @@ public class CourseController {
 		try {
 			RunningEndView.updateCourseNameView(service.updateCourseName(courseId, courseName));
 		} catch (SQLException e) {
-			e.printStackTrace();
-		} catch (NotExistException e) {
 			e.printStackTrace();
 		}
 
@@ -61,8 +57,6 @@ public class CourseController {
 			RunningEndView.updateCourseStartDateView(service.updateCourseStartDate(courseId, startDate));
 		} catch (SQLException e) {
 			e.printStackTrace();
-		} catch (NotExistException e) {
-			e.printStackTrace();
 		}
 
 	}
@@ -72,8 +66,6 @@ public class CourseController {
 		try {
 			RunningEndView.updateCourseEndDateView(service.updateCourseEndDate(courseId, endDate));
 		} catch (SQLException e) {
-			e.printStackTrace();
-		} catch (NotExistException e) {
 			e.printStackTrace();
 		}
 
@@ -85,8 +77,6 @@ public class CourseController {
 			service.deleteCourse(courseName);
 			RunningSuccessView.showSuccess("입력한 강의 삭제 성공!");
 		} catch (SQLException e) {
-			e.printStackTrace();
-		} catch (NotExistException e) {
 			e.printStackTrace();
 		}
 	}

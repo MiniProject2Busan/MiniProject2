@@ -6,7 +6,6 @@ import dto.StudentDTO;
 import service.StudentService;
 import view.RunningEndView;
 import view.RunningSuccessView;
-import view.StudentView;
 
 public class StudentController {
 	private static StudentController instance = new StudentController();
@@ -55,7 +54,8 @@ public class StudentController {
 	// 특정 학생 추가
 	public void insertStudent(StudentDTO student) {
 		try {
-			service.insertStudent(student);
+//			service.insertStudent(student);
+			service.insertPeople(student);
 		} catch (SQLException e) {
 			RunningEndView.Error("학생 정보 추가가 실패하였습니다.");
 		}
@@ -92,7 +92,6 @@ public class StudentController {
 				RunningEndView.Error("검색하신 학생 정보가 존재하지 않습니다.");
 			} else { // 검색정보가 존재한다면
 				if (attendance == 1 | attendance == 2) { // 1이나 2라면
-					System.out.println(getStudent.getId() + "Line95");
 					if (attendance == 1) {
 						RunningSuccessView.showSuccess("지각정보 수정이 완료되었습니다.");
 					} else {
@@ -103,6 +102,7 @@ public class StudentController {
 				}
 			}
 		} catch (SQLException e) {
+			RunningEndView.Error(e.getMessage());
 		}
 	}
 }

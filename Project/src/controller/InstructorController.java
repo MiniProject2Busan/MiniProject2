@@ -6,7 +6,7 @@ import java.util.InputMismatchException;
 
 import dto.CourseDTO;
 import dto.InstructorDTO;
-import exception.NotExistException;
+import service.CourseService;
 import service.InstructorService;
 import view.RunningEndView;
 
