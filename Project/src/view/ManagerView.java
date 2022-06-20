@@ -26,7 +26,9 @@ public class ManagerView implements ViewInterface {
 		Scanner sc = new Scanner(System.in);
 		System.out.println("조회할 담당자의 이름 검색:");
 		String managerName = sc.nextLine();
+		System.out.println("──────────────────────────────────────────────────────────────────");
 		managerCtrl.managerView(managerName);
+		System.out.println("──────────────────────────────────────────────────────────────────");
 		System.out.println();
 	}
 
@@ -84,8 +86,8 @@ public class ManagerView implements ViewInterface {
 
 		ManagerDTO manager = managerCtrl.checkManagerId(managerId);
 		if (manager != null) {
-			System.out.println("Deleted! " + manager);
-			System.out.println();
+			System.out.println("삭제되었습니다.");
+//			System.out.println();
 
 			managerCtrl.deleteManager(managerId);
 		} else {

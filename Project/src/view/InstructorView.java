@@ -26,7 +26,9 @@ public class InstructorView implements ViewInterface {
 		Scanner sc = new Scanner(System.in);
 		System.out.println("조회할 강사의 이름 검색:");
 		String instructorName = sc.nextLine();
+		System.out.println("──────────────────────────────────────────────────────────────────");
 		instructorCtrl.instructorView(instructorName);
+		System.out.println("──────────────────────────────────────────────────────────────────");
 		System.out.println();
 	}
 
@@ -89,8 +91,8 @@ public class InstructorView implements ViewInterface {
 
 		InstructorDTO instructor = instructorCtrl.checkInstructorId(instructorId);
 		if (instructor != null) {
-			System.out.println("Deleted! " + instructor);
-			System.out.println();
+			System.out.println("삭제되었습니다. ");
+//			System.out.println();
 
 			instructorCtrl.deleteInstructor(instructorId);
 		} else {

@@ -35,8 +35,8 @@ public class CourseService {
 	}
 
 	// 새로운 강의 저장
-	public void addCourse(CourseDTO course) throws SQLException, IllegalArgumentException {
-		CourseDAO.addCourse(course);
+	public boolean addCourse(CourseDTO course) throws SQLException, IllegalArgumentException {
+		return CourseDAO.addCourse(course);
 	}
 
 	public boolean updateCourse(int courseId, int selectNum, String modify)

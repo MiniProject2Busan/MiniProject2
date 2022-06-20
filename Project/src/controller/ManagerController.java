@@ -50,6 +50,7 @@ public class ManagerController {
 	public void updateManager(ManagerDTO manager, int num, String inputValue) {
 		try {
 			ResultView.updateView(service.managerUpdate(manager, num, inputValue));
+//			ResultView.managerView(manager);
 		} catch (SQLException e) {
 			e.printStackTrace();
 		}
@@ -58,7 +59,11 @@ public class ManagerController {
 	// 담당자 정보 추가
 	public void insertManager(ManagerDTO manager) {
 		try {
-			service.managerInsert(manager);
+			if(service.managerInsert(manager)) {
+				System.out.println("정보 추가 성공");
+			}else{
+				System.out.println("정보 추가 실패");
+			};
 		} catch (SQLException e) {
 			e.printStackTrace();
 		}

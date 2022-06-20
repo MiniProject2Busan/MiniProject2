@@ -35,7 +35,7 @@ public class StudentView implements ViewInterface {
 		String addr = sc.next();
 		System.out.println("학생의 좌석이름 입력하세요:");
 		String seatId = sc.next();
-		System.out.println("학생의 매니저를 입력하세요:");
+		System.out.println("학생의 담당자를 입력하세요:");
 		int manager = sc.nextInt();
 		StudentDTO student = new StudentDTO(name, age, phone, addr, seatId, manager);
 		studentctrl.insertStudent(student);
@@ -73,7 +73,9 @@ public class StudentView implements ViewInterface {
 		Scanner sc = new Scanner(System.in);
 		System.out.println("조회할 학생의 이름 검색:");
 		String name = sc.next();
+		System.out.println("────────────────────────────────────────────────────────────────────────────────────────────────────────────");
 		studentctrl.selectStudent(name);
+		System.out.println("────────────────────────────────────────────────────────────────────────────────────────────────────────────");
 	}
 
 	// 급여정보 확인
@@ -81,7 +83,6 @@ public class StudentView implements ViewInterface {
 		Scanner sc = new Scanner(System.in);
 		System.out.println("===== 급여 정보 검색 =====");
 		System.out.println("학생 이름을 입력해주세요:");
-		System.out.println();
 		String stdName = sc.next();
 		studentctrl.salaryCal(stdName);
 	}

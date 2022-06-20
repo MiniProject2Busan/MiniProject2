@@ -112,8 +112,8 @@ public class StudentDTO {
 
 	@Override
 	public String toString() {
-		return "아이디:" + id + " 이름:" + name + " 나이:" + age + " 전화번호:" + phone + "\n주소:" + addr
-				+ " 좌석:" + seatId + " 지각:" + attendance + " 결석:" + absent + " 담당자번호:"
+		return "아이디:" + id + "\t이름:" +name + "\t나이:" +age + "\t전화번호:" +phone + "\t주소:" + addr
+				+ "\t좌석:" + seatId + "\t지각:" + attendance + "\t결석:" + absent + "\t담당자번호:"
 				+ manager_id;
 	}
 }

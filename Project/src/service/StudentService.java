@@ -39,8 +39,8 @@ public class StudentService {
 
 	
 	// 특정 학생 정보 추가
-	public void insertStudent(StudentDTO student) throws SQLException {
-		StudentDAO.addStudent(student);
+	public boolean insertStudent(StudentDTO student) throws SQLException {
+		return StudentDAO.addStudent(student);
 	}
 
 	public boolean deleteStudent(int studentId) throws SQLException {

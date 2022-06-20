@@ -45,7 +45,9 @@ public class CourseView {
 		Scanner sc = new Scanner(System.in);
 		System.out.println("조회할 강의 이름 검색: ");
 		String courseName = sc.nextLine();
+		System.out.println("───────────────────────────────────────────────────────────────────────────────────");
 		courseCtrl.selectCourse(courseName);
+		System.out.println("───────────────────────────────────────────────────────────────────────────────────");
 		System.out.println();
 	}
 

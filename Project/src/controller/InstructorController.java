@@ -61,7 +61,12 @@ public class InstructorController {
 	public void insertInstructor(InstructorDTO instructor) throws InputMismatchException {
 		try {
 //			System.out.println("instructor : " + instructor);
-			service.instructorInsert(instructor);
+			if(service.instructorInsert(instructor)) {
+				System.out.println("정보 추가 성공");
+				
+			}else{
+				System.out.println("정보 추가 실패");
+			}
 		} catch (SQLException e) {
 			e.printStackTrace();
 		}

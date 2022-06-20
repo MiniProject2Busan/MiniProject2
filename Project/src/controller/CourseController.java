@@ -23,7 +23,11 @@ public class CourseController {
 	public void addCourse(String courseName, String startDate, String endDate, int instructorId) {
 		try {
 			CourseDTO course = new CourseDTO(courseName, Date.valueOf(startDate), Date.valueOf(endDate), instructorId);
-			service.addCourse(course);
+			if(service.addCourse(course)) {
+				System.out.println("정보 추가 성공");
+			}else{
+				System.out.println("정보 추가 실패");
+			};
 		} catch (SQLException e) {
 			int error = e.getErrorCode();
 

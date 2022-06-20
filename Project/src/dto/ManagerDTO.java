@@ -32,8 +32,9 @@ public class ManagerDTO {
 	}
 	@Override
 	public String toString() {
-		return "ManagerDTO [manager_id=" + manager_id + ", manager_name=" + manager_name + ", manager_phone="
-				+ manager_phone + "]";
+
+		return "담당자 ID:" + manager_id + "\t담당자 이름:" + manager_name + "\t담당자 전화번호:"
+				+ manager_phone;
 	}
 	
 }

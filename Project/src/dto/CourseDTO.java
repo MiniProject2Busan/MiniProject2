@@ -73,8 +73,9 @@ public class CourseDTO {
 
 	@Override
 	public String toString() {
-		return "강의 정보 [강의Id : " + courseId + ", 강의명 : " + courseName + ", 강의 시작 일자 : " + startDate + ", 강의 종료 일자 : "
-				+ endDate + ", 강사Id : " + instructorId + "]";
+		
+		return "강의ID:" + courseId + "\t강의명:" + courseName +  "\t강의 시작 일자:" + startDate
+				+"\t강의 종료 일자:" + endDate + "\t강사Id:" + instructorId;
 	}
 
 }

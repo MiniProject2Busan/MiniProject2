@@ -12,10 +12,12 @@ public class SecondView {
 		CourseView courseV = CourseView.getInstance();
 		switch (startNum) {
 		case 1: // 모든 정보 출력
+			System.out.println("-----------모든 정보 출력-------------");
 			System.out.println("1.학생의 모든 정보 출력");
 			System.out.println("2.강사의 모든 정보 출력");
 			System.out.println("3.담당자 모든 정보 출력");
-			System.out.println("4.강의 모든 정보 출력\n");
+			System.out.println("4.강의 모든 정보 출력");
+			System.out.println("----------------------------------");
 			int select = sc.nextInt();
 			switch (select) {
 			case 1:
@@ -33,12 +35,13 @@ public class SecondView {
 			break;
 
 		case 2: // 특정 정보 검색
-
+			System.out.println("***********특정 정보 검색************");
+			
 			System.out.println("1.학생 인물 검색");
 			System.out.println("2.강사 인물 검색");
 			System.out.println("3.담당자 인물 검색");
-			System.out.println("4.강의 검색\n");
-			System.out.println();
+			System.out.println("4.강의 검색");
+			System.out.println("********************************");
 			int second = sc.nextInt();
 			switch (second) {
 			case 1:
@@ -60,6 +63,7 @@ public class SecondView {
 			break;
 
 		case 3: // 특정 정보 업데이트
+			System.out.println("-----------특정 정보 검색-------------");
 			System.out.println("1.학생 정보 업데이트");
 			System.out.println("2.강사 정보 업데이트");
 			System.out.println("3.담당자 정보 업데이트");

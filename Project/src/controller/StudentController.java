@@ -53,7 +53,9 @@ public class StudentController {
 	// 특정 학생 추가
 	public void insertStudent(StudentDTO student) {
 		try {
-			service.insertStudent(student);
+			if(service.insertStudent(student)) {
+				System.out.println("학생정보 추가 성공");
+			};
 		} catch (SQLException e) {
 			ResultView.Error("학생 정보 추가가 실패하였습니다.");
 		}
@@ -75,7 +77,7 @@ public class StudentController {
 	// 급여 정보 검색
 	public void salaryCal(String stdName) {
 		try {
-			ResultView.getsalary(service.getData(service.getOneStudnet(stdName)));
+			ResultView.getsalary(service.getOneStudnet(stdName),service.getData(service.getOneStudnet(stdName)));
 		} catch (SQLException e) {
 			ResultView.Error("SQL문 에러");
 		} catch(NullPointerException e) {

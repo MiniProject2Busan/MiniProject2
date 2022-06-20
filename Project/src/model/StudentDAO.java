@@ -26,7 +26,6 @@ public class StudentDAO {
 			pstmt.setString(5, student.getSeatId());
 			pstmt.setInt(6, student.getManager_id());
 			int x = pstmt.executeUpdate();
-			System.out.println(x);
 			if (x == 1) {
 				return true;
 			}

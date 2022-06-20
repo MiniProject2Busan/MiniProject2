@@ -13,10 +13,18 @@ public class ResultView {
 	
 	public static void allListView(ArrayList<?> allList) {
 		int length = allList.size();
+		
 		if (length != 0) {
+			System.out.println("총 검색 결과:"+length);
+			System.out.println("━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━");
 			for (int index = 0; index < length; index++) {
-				System.out.println("검색정보 " + (index + 1) + " - " + allList.get(index)+"\n");
+//				System.out.println("검색정보 " + (index + 1) + " - " + allList.get(index)+"\n------------------------------");
+//				System.out.println(allList.get(index));─
+//				System.out.println("┎━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━┓");
+//				System.out.println("검색정보 " + " - " + (index + 1) + "\n" + " " + allList.get(index) + "\n");
+				System.out.println(allList.get(index));
 			}
+			System.out.println("━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━");
 		}
 	}
 
@@ -24,15 +32,15 @@ public class ResultView {
 	 * Instructor
 	 */
 	// 모든 강사 정보 출력
-	public static void instructorView(ArrayList<InstructorDTO> instructorList) {
-		int length = instructorList.size();
-		if (length != 0) {
-			for (int index = 0; index < length; index++) {
-				System.out.println("검색정보 " + (index + 1) + " - " + instructorList.get(index));
-			}
-		}
-
-	}
+//	public static void instructorView(ArrayList<InstructorDTO> instructorList) {
+//		int length = instructorList.size();
+//		if (length != 0) {
+//			for (int index = 0; index < length; index++) {
+//				System.out.println("검색정보 " + (index + 1) + " - " + instructorList.get(index));
+//			}
+//		}
+//
+//	}
 	// 특정 강사 정보 출력
 	public static void instructorVeiw(InstructorDTO instructor) {
 		if (instructor != null) {
@@ -108,10 +116,14 @@ public class ResultView {
 	public static void selectView(StudentDTO studentinfo) {
 		if (studentinfo == null) {
 			System.out.println("존재하지 않는 회원입니다.");
+		}else {
+			System.out.println(studentinfo);
 		}
 	}
 
-	public static void getsalary(int data) {
+	public static void getsalary(StudentDTO student,int data) {
+		System.out.println();
+		System.out.println("결석:"+student.getAbsent()+"\n지각:"+student.getAttendance());
 		System.out.println("총 금액은 " + data + "원 입니다.");
 	}
 
