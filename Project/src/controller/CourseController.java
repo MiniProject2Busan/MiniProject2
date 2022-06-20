@@ -28,14 +28,14 @@ public class CourseController {
 			int error = e.getErrorCode();
 
 			if (error == 1406) {
-				RunningEndView.Error("강의명은 최대 10글자 입니다.");
+				ResultView.Error("강의명은 최대 10글자 입니다.");
 			} else if (error == 1452) {
-				RunningEndView.Error("해당하는 강사가 없습니다.");
+				ResultView.Error("해당하는 강사가 없습니다.");
 			} else {
-				RunningEndView.Error("강의 정보 추가가 실패하였습니다.");
+				ResultView.Error("강의 정보 추가가 실패하였습니다.");
 			}
 		} catch (IllegalArgumentException e) {
-			RunningEndView.Error("형식이 맞지 않습니다.");
+			ResultView.Error("형식이 맞지 않습니다.");
 		}
 	}
 
@@ -74,18 +74,18 @@ public class CourseController {
 			if (service.updateCourse(courseId, selectNum, modify)) {
 				RunningSuccessView.showSuccess("수정이 완료되었습니다.");
 			} else {
-				RunningEndView.Error("존재하지 않는 강의입니다.");
+				ResultView.Error("존재하지 않는 강의입니다.");
 			}
 		} catch (SQLException e) {
 			int error = e.getErrorCode();
 
 			if (error == 1406) {
-				RunningEndView.Error("강의명은 최대 10글자 입니다.");
+				ResultView.Error("강의명은 최대 10글자 입니다.");
 			} else {
-				RunningEndView.Error("강의 정보 수정이 실패하였습니다.");
+				ResultView.Error("강의 정보 수정이 실패하였습니다.");
 			}
 		} catch (IllegalArgumentException e) {
-			RunningEndView.Error("형식이 맞지 않습니다.");
+			ResultView.Error("형식이 맞지 않습니다.");
 		}
 	}
 
@@ -95,10 +95,10 @@ public class CourseController {
 			if (service.deleteCourse(courseId)) {
 				RunningSuccessView.showSuccess("입력한 강의 삭제 성공!");
 			} else {
-				RunningEndView.Error("존재하지 않는 강의입니다.");
+				ResultView.Error("존재하지 않는 강의입니다.");
 			}
 		} catch (SQLException e) {
-			RunningEndView.Error("삭제에 실패했습니다.");
+			ResultView.Error("삭제에 실패했습니다.");
 		}
 	}
 
