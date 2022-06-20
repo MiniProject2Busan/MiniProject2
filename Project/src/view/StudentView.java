@@ -24,22 +24,22 @@ public class StudentView implements ViewInterface {
 
 	// 학생추가 뷰
 	public void insertView() throws NoSuchElementException {
-			Scanner sc = new Scanner(System.in);
-			System.out.println("학생의 이름을 입력하세요:");
-			String name = sc.next();
-			System.out.println("학생의 나이를 입력하세요:");
-			int age = sc.nextInt();
-			System.out.println("학생의 전화번호를 입력하세요:");
-			String phone = sc.next();
-			System.out.println("학생의 주소를 입력하세요:");
-			String addr = sc.next();
-			System.out.println("학생의 좌석이름 입력하세요:");
-			String seatId = sc.next();
-			System.out.println("학생의 매니저를 입력하세요:");
-			int manager = sc.nextInt();
-			StudentDTO student = new StudentDTO(name, age, phone, addr, seatId, manager);
-			studentctrl.insertStudent(student);
-
+		Scanner sc = new Scanner(System.in);
+		System.out.println("학생의 이름을 입력하세요:");
+		String name = sc.next();
+		System.out.println("학생의 나이를 입력하세요:");
+		int age = sc.nextInt();
+		System.out.println("학생의 전화번호를 입력하세요:");
+		String phone = sc.next();
+		System.out.println("학생의 주소를 입력하세요:");
+		String addr = sc.next();
+		System.out.println("학생의 좌석이름 입력하세요:");
+		String seatId = sc.next();
+		System.out.println("학생의 매니저를 입력하세요:");
+		int manager = sc.nextInt();
+		StudentDTO student = new StudentDTO(name, age, phone, addr, seatId, manager);
+		studentctrl.insertStudent(student);
+	}
 
 	// 학생 삭제 뷰
 	public void deleteView() throws NoSuchElementException {
