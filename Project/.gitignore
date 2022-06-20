@@ -19,3 +19,7 @@
 hs_err_pid*
 replay_pid*
 /bin/
+.DS_Store
+.project
+db.properties
+.settings/
